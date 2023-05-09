@@ -1,0 +1,2083 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head></head><body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+
+  <div class="border-box-sizing">
+    <div class="container">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#Step 1</span>
+
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;session_2_homework_data.csv&#39;</span>
+<span class="n">dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<span class="n">dat</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[1]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>USGG3M</th>
+      <th>USGG6M</th>
+      <th>USGG2YR</th>
+      <th>USGG3YR</th>
+      <th>USGG5YR</th>
+      <th>USGG10YR</th>
+      <th>USGG30YR</th>
+      <th>Output1</th>
+      <th>Easing</th>
+      <th>Tightening</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1/5/1981</td>
+      <td>13.52</td>
+      <td>13.09</td>
+      <td>12.289</td>
+      <td>12.28</td>
+      <td>12.294</td>
+      <td>12.152</td>
+      <td>11.672</td>
+      <td>18.015526</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1/6/1981</td>
+      <td>13.58</td>
+      <td>13.16</td>
+      <td>12.429</td>
+      <td>12.31</td>
+      <td>12.214</td>
+      <td>12.112</td>
+      <td>11.672</td>
+      <td>18.091398</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1/7/1981</td>
+      <td>14.50</td>
+      <td>13.90</td>
+      <td>12.929</td>
+      <td>12.78</td>
+      <td>12.614</td>
+      <td>12.382</td>
+      <td>11.892</td>
+      <td>19.447314</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1/8/1981</td>
+      <td>14.76</td>
+      <td>14.00</td>
+      <td>13.099</td>
+      <td>12.95</td>
+      <td>12.684</td>
+      <td>12.352</td>
+      <td>11.912</td>
+      <td>19.748510</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1/9/1981</td>
+      <td>15.20</td>
+      <td>14.30</td>
+      <td>13.539</td>
+      <td>13.28</td>
+      <td>12.884</td>
+      <td>12.572</td>
+      <td>12.132</td>
+      <td>20.572042</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">dat</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">dat</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span> <span class="s1">&#39;Output1&#39;</span><span class="p">,</span> <span class="s1">&#39;Easing&#39;</span><span class="p">,</span> <span class="s1">&#39;Tightening&#39;</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">linewidth</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[2]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;AxesSubplot:&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea">
+<img src="javascript://"/>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#Step 2</span>
+<span class="c1">#Task 1</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">fname</span> <span class="o">=</span> <span class="s1">&#39;session_2_homework_data.csv&#39;</span>
+<span class="n">dat</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+<span class="n">dat</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>USGG3M</th>
+      <th>USGG6M</th>
+      <th>USGG2YR</th>
+      <th>USGG3YR</th>
+      <th>USGG5YR</th>
+      <th>USGG10YR</th>
+      <th>USGG30YR</th>
+      <th>Output1</th>
+      <th>Easing</th>
+      <th>Tightening</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1/5/1981</td>
+      <td>13.5200</td>
+      <td>13.0900</td>
+      <td>12.2890</td>
+      <td>12.2800</td>
+      <td>12.2940</td>
+      <td>12.1520</td>
+      <td>11.6720</td>
+      <td>18.015526</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1/6/1981</td>
+      <td>13.5800</td>
+      <td>13.1600</td>
+      <td>12.4290</td>
+      <td>12.3100</td>
+      <td>12.2140</td>
+      <td>12.1120</td>
+      <td>11.6720</td>
+      <td>18.091398</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1/7/1981</td>
+      <td>14.5000</td>
+      <td>13.9000</td>
+      <td>12.9290</td>
+      <td>12.7800</td>
+      <td>12.6140</td>
+      <td>12.3820</td>
+      <td>11.8920</td>
+      <td>19.447314</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1/8/1981</td>
+      <td>14.7600</td>
+      <td>14.0000</td>
+      <td>13.0990</td>
+      <td>12.9500</td>
+      <td>12.6840</td>
+      <td>12.3520</td>
+      <td>11.9120</td>
+      <td>19.748510</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1/9/1981</td>
+      <td>15.2000</td>
+      <td>14.3000</td>
+      <td>13.5390</td>
+      <td>13.2800</td>
+      <td>12.8840</td>
+      <td>12.5720</td>
+      <td>12.1320</td>
+      <td>20.572042</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>8295</th>
+      <td>6/20/2014</td>
+      <td>0.0101</td>
+      <td>0.0355</td>
+      <td>0.4561</td>
+      <td>0.9256</td>
+      <td>1.6804</td>
+      <td>2.6052</td>
+      <td>3.4337</td>
+      <td>-11.719945</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8296</th>
+      <td>6/23/2014</td>
+      <td>0.0051</td>
+      <td>0.0355</td>
+      <td>0.4643</td>
+      <td>0.9470</td>
+      <td>1.7021</td>
+      <td>2.6261</td>
+      <td>3.4549</td>
+      <td>-11.687658</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8297</th>
+      <td>6/24/2014</td>
+      <td>0.0203</td>
+      <td>0.0507</td>
+      <td>0.4563</td>
+      <td>0.9311</td>
+      <td>1.6689</td>
+      <td>2.5781</td>
+      <td>3.3991</td>
+      <td>-11.732186</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8298</th>
+      <td>6/25/2014</td>
+      <td>0.0203</td>
+      <td>0.0456</td>
+      <td>0.4804</td>
+      <td>0.9124</td>
+      <td>1.6540</td>
+      <td>2.5592</td>
+      <td>3.3815</td>
+      <td>-11.749457</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>8299</th>
+      <td>6/26/2014</td>
+      <td>0.0253</td>
+      <td>0.0507</td>
+      <td>0.4646</td>
+      <td>0.8803</td>
+      <td>1.6462</td>
+      <td>2.5214</td>
+      <td>3.3458</td>
+      <td>-11.792186</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>8300 rows &#215; 11 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="n">x1</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;USGG3M&#39;</span><span class="p">]]</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;USGG6M&#39;</span><span class="p">]]</span>
+<span class="n">x3</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;USGG2YR&#39;</span><span class="p">]]</span>
+<span class="n">x4</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;USGG3YR&#39;</span><span class="p">]]</span>
+<span class="n">x5</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;USGG5YR&#39;</span><span class="p">]]</span>
+<span class="n">x6</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;USGG10YR&#39;</span><span class="p">]]</span>
+<span class="n">x7</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;USGG30YR&#39;</span><span class="p">]]</span>
+
+<span class="n">y</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;Output1&#39;</span><span class="p">]]</span>
+
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">reg1</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">reg2</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">reg3</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x3</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x3</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">reg4</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x4</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x4</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">reg5</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x5</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x5</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">reg6</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x6</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x6</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">reg7</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x7</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x7</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea">
+<img src="javascript://"/>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">reg1</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span> <span class="n">reg2</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span> <span class="n">reg3</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span> <span class="n">reg4</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span> <span class="n">reg5</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span> <span class="n">reg6</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span> <span class="n">reg7</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[-11.72318364] [-12.09752768] [-13.05577461] [-13.86161847] [-15.43664892] [-18.06336981] [-21.08590455]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">reg1</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">reg2</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">reg3</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">reg4</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">reg5</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">reg6</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">reg7</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[2.50756094]] [[2.4972347]] [[2.40044931]] [[2.45579266]] [[2.5687416]] [[2.78699105]] [[3.06956086]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">results</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="n">results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">reg1</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">reg1</span><span class="o">.</span><span class="n">intercept_</span><span class="p">]</span>
+<span class="n">results</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">reg2</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">reg2</span><span class="o">.</span><span class="n">intercept_</span><span class="p">]</span>
+<span class="n">results</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">reg3</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">reg3</span><span class="o">.</span><span class="n">intercept_</span><span class="p">]</span>
+<span class="n">results</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">reg4</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">reg4</span><span class="o">.</span><span class="n">intercept_</span><span class="p">]</span>
+<span class="n">results</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">reg5</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">reg5</span><span class="o">.</span><span class="n">intercept_</span><span class="p">]</span>
+<span class="n">results</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">reg6</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">reg6</span><span class="o">.</span><span class="n">intercept_</span><span class="p">]</span>
+<span class="n">results</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">reg7</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">reg7</span><span class="o">.</span><span class="n">intercept_</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[  2.50756094 -11.72318364]
+ [  2.4972347  -12.09752768]
+ [  2.40044931 -13.05577461]
+ [  2.45579266 -13.86161847]
+ [  2.5687416  -15.43664892]
+ [  2.78699105 -18.06336981]
+ [  3.06956086 -21.08590455]]
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/tmp/ipykernel_159/1919218454.py:3: DeprecationWarning: setting an array element with a sequence. This was supported in some cases where the elements are arrays with a single element. For example `np.array([1, np.array([2])], dtype=int)`. In the future this will raise the same ValueError as `np.array([1, [2]], dtype=int)`.
+  results[0] = [reg1.coef_, reg1.intercept_]
+/tmp/ipykernel_159/1919218454.py:4: DeprecationWarning: setting an array element with a sequence. This was supported in some cases where the elements are arrays with a single element. For example `np.array([1, np.array([2])], dtype=int)`. In the future this will raise the same ValueError as `np.array([1, [2]], dtype=int)`.
+  results[1] = [reg2.coef_, reg2.intercept_]
+/tmp/ipykernel_159/1919218454.py:5: DeprecationWarning: setting an array element with a sequence. This was supported in some cases where the elements are arrays with a single element. For example `np.array([1, np.array([2])], dtype=int)`. In the future this will raise the same ValueError as `np.array([1, [2]], dtype=int)`.
+  results[2] = [reg3.coef_, reg3.intercept_]
+/tmp/ipykernel_159/1919218454.py:6: DeprecationWarning: setting an array element with a sequence. This was supported in some cases where the elements are arrays with a single element. For example `np.array([1, np.array([2])], dtype=int)`. In the future this will raise the same ValueError as `np.array([1, [2]], dtype=int)`.
+  results[3] = [reg4.coef_, reg4.intercept_]
+/tmp/ipykernel_159/1919218454.py:7: DeprecationWarning: setting an array element with a sequence. This was supported in some cases where the elements are arrays with a single element. For example `np.array([1, np.array([2])], dtype=int)`. In the future this will raise the same ValueError as `np.array([1, [2]], dtype=int)`.
+  results[4] = [reg5.coef_, reg5.intercept_]
+/tmp/ipykernel_159/1919218454.py:8: DeprecationWarning: setting an array element with a sequence. This was supported in some cases where the elements are arrays with a single element. For example `np.array([1, np.array([2])], dtype=int)`. In the future this will raise the same ValueError as `np.array([1, [2]], dtype=int)`.
+  results[5] = [reg6.coef_, reg6.intercept_]
+/tmp/ipykernel_159/1919218454.py:9: DeprecationWarning: setting an array element with a sequence. This was supported in some cases where the elements are arrays with a single element. For example `np.array([1, np.array([2])], dtype=int)`. In the future this will raise the same ValueError as `np.array([1, [2]], dtype=int)`.
+  results[6] = [reg7.coef_, reg7.intercept_]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#Task 2</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">reg1</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x1</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x1</span><span class="p">)</span>
+
+<span class="n">reg2</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+
+<span class="n">reg3</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x3</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x3</span><span class="p">)</span>
+
+<span class="n">reg4</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x4</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x4</span><span class="p">)</span>
+
+<span class="n">reg5</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x5</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x5</span><span class="p">)</span>
+
+<span class="n">reg6</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x6</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x6</span><span class="p">)</span>
+
+<span class="n">reg7</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x7</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">x7</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea">
+<img src="javascript://"/>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">reg1</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span> <span class="n">reg2</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span> <span class="n">reg3</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span> <span class="n">reg4</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span> <span class="n">reg5</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span> <span class="n">reg6</span><span class="o">.</span><span class="n">intercept_</span><span class="p">,</span> <span class="n">reg7</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[4.67513408] [4.84436952] [5.43888786] [5.64445799] [6.0094207] [6.48131605] [6.86935542]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#Step 3</span>
+<span class="n">fname1</span> <span class="o">=</span> <span class="s1">&#39;session_2_exclude_output1.csv&#39;</span>
+<span class="n">dat1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">fname1</span><span class="p">)</span>
+<span class="n">dat1</span><span class="p">[:</span><span class="mi">3000</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;AxesSubplot:&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea">
+<img src="javascript://"/>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#Task 1</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+
+<span class="n">X</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;USGG3M&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;Output1&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/opt/conda/envs/PUI/lib/python3.8/site-packages/sklearn/utils/validation.py:63: DataConversionWarning: A column-vector y was passed when a 1d array was expected. Please change the shape of y to (n_samples, ), for example using ravel().
+  return f(*args, **kwargs)
+/opt/conda/envs/PUI/lib/python3.8/site-packages/sklearn/linear_model/_logistic.py:763: ConvergenceWarning: lbfgs failed to converge (status=1):
+STOP: TOTAL NO. of ITERATIONS REACHED LIMIT.
+
+Increase the number of iterations (max_iter) or scale the data as shown in:
+    https://scikit-learn.org/stable/modules/preprocessing.html
+Please also refer to the documentation for alternative solver options:
+    https://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
+  n_iter_i = _check_optimize_result(
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea">
+<img src="javascript://"/>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(41, 1)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#Step 4</span>
+<span class="c1">#Task 1</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;USGG3M&#39;</span><span class="p">,</span><span class="s1">&#39;USGG2YR&#39;</span><span class="p">,</span><span class="s1">&#39;USGG5YR&#39;</span><span class="p">]]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">USGG3M</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">USGG2YR</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">USGG3M</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">USGG5YR</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">USGG2YR</span><span class="o">.</span><span class="n">corr</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">USGG5YR</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.9843135115113616
+0.9603153373724354
+0.9916365898905569
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">corr</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>           USGG3M   USGG2YR   USGG5YR
+USGG3M   1.000000  0.984314  0.960315
+USGG2YR  0.984314  1.000000  0.991637
+USGG5YR  0.960315  0.991637  1.000000
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#Task 2</span>
+<span class="n">covmat</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">7</span><span class="p">]</span><span class="o">.</span><span class="n">cov</span><span class="p">()</span>
+<span class="n">covmat</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[14]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>USGG3M</th>
+      <th>USGG6M</th>
+      <th>USGG2YR</th>
+      <th>USGG3YR</th>
+      <th>USGG5YR</th>
+      <th>USGG10YR</th>
+      <th>USGG30YR</th>
+      <th>Output1</th>
+      <th>Easing</th>
+      <th>Tightening</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>USGG3M</th>
+      <td>0.419000</td>
+      <td>0.259980</td>
+      <td>0.232980</td>
+      <td>0.188980</td>
+      <td>0.134300</td>
+      <td>0.101500</td>
+      <td>0.10960</td>
+      <td>0.556385</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>USGG6M</th>
+      <td>0.259980</td>
+      <td>0.170497</td>
+      <td>0.149103</td>
+      <td>0.125803</td>
+      <td>0.090537</td>
+      <td>0.064117</td>
+      <td>0.06824</td>
+      <td>0.357417</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>USGG2YR</th>
+      <td>0.232980</td>
+      <td>0.149103</td>
+      <td>0.143977</td>
+      <td>0.119537</td>
+      <td>0.082303</td>
+      <td>0.060723</td>
+      <td>0.06316</td>
+      <td>0.328121</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>USGG3YR</th>
+      <td>0.188980</td>
+      <td>0.125803</td>
+      <td>0.119537</td>
+      <td>0.102217</td>
+      <td>0.070823</td>
+      <td>0.049283</td>
+      <td>0.05096</td>
+      <td>0.272823</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>USGG5YR</th>
+      <td>0.134300</td>
+      <td>0.090537</td>
+      <td>0.082303</td>
+      <td>0.070823</td>
+      <td>0.050137</td>
+      <td>0.034537</td>
+      <td>0.03576</td>
+      <td>0.192105</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>USGG10YR</th>
+      <td>0.101500</td>
+      <td>0.064117</td>
+      <td>0.060723</td>
+      <td>0.049283</td>
+      <td>0.034537</td>
+      <td>0.027057</td>
+      <td>0.02770</td>
+      <td>0.140410</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>USGG30YR</th>
+      <td>0.109600</td>
+      <td>0.068240</td>
+      <td>0.063160</td>
+      <td>0.050960</td>
+      <td>0.035760</td>
+      <td>0.027700</td>
+      <td>0.02984</td>
+      <td>0.148170</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Output1</th>
+      <td>0.556385</td>
+      <td>0.357417</td>
+      <td>0.328121</td>
+      <td>0.272823</td>
+      <td>0.192105</td>
+      <td>0.140410</td>
+      <td>0.14817</td>
+      <td>0.768325</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Easing</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Tightening</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Task 3</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">scale</span>
+<span class="n">dat11</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;USGG3M&#39;</span><span class="p">,</span> <span class="s1">&#39;USGG6M&#39;</span><span class="p">,</span> <span class="s1">&#39;USGG2YR&#39;</span><span class="p">,</span> <span class="s1">&#39;USGG3YR&#39;</span><span class="p">,</span> <span class="s1">&#39;USGG5YR&#39;</span><span class="p">,</span> <span class="s1">&#39;USGG10YR&#39;</span><span class="p">,</span> <span class="s1">&#39;USGG30YR&#39;</span><span class="p">,</span> <span class="s1">&#39;Output1&#39;</span><span class="p">]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">dat11</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dat11</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>USGG3M      4.675134e+00
+USGG6M      4.844370e+00
+USGG2YR     5.438888e+00
+USGG3YR     5.644458e+00
+USGG5YR     6.009421e+00
+USGG10YR    6.481316e+00
+USGG30YR    6.869355e+00
+Output1     1.421669e-11
+dtype: float64
+USGG3M      3.429343
+USGG6M      3.464175
+USGG2YR     3.644750
+USGG3YR     3.564919
+USGG5YR     3.397511
+USGG10YR    3.095720
+USGG30YR    2.761214
+Output1     8.763814
+dtype: float64
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#Standerlize</span>
+<span class="n">dat11_scale</span> <span class="o">=</span> <span class="n">scale</span><span class="p">(</span><span class="n">dat11</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">dat11_scale</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">dat11_scale</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dat11_scale</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[ 2.57932761  2.38040131  1.87955959 ...  1.83189222  1.73942817
+   2.05579567]
+ [ 2.59682473  2.40060936  1.91797332 ...  1.81897038  1.73942817
+   2.06445364]
+ [ 2.86511386  2.61423729  2.0551652  ...  1.90619282  1.81910806
+   2.21918054]
+ ...
+ [-1.3574363  -1.38386716 -1.36714124 ... -1.26091864 -1.2568617
+  -1.33878844]
+ [-1.3574363  -1.38533946 -1.36052859 ... -1.26702421 -1.26323609
+  -1.34075924]
+ [-1.35597821 -1.38386716 -1.36486385 ... -1.27923535 -1.27616597
+  -1.34563512]]
+[-3.42430234e-18 -1.33547791e-16  3.42430234e-18  7.87589538e-17
+  3.42430234e-17 -3.08187211e-17 -4.48583607e-16  9.58804655e-17]
+[1. 1. 1. 1. 1. 1. 1. 1.]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Find eigenvalues and eigenvectors</span>
+<span class="n">standardisedX</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">dat11_scale</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">dat11</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="n">covmat</span> <span class="o">=</span> <span class="n">standardisedX</span><span class="o">.</span><span class="n">cov</span><span class="p">()</span>
+<span class="n">eig_val</span><span class="p">,</span><span class="n">eig_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">covmat</span><span class="p">)</span>
+<span class="n">eig_val</span><span class="p">,</span><span class="n">eig_vec</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[17]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(array([7.83105653e+00, 1.56369790e-01, 1.11949776e-02, 1.28687700e-03,
+        7.09595064e-04, 3.92661823e-16, 2.22699399e-04, 1.23505979e-04]),
+ array([[ 0.34962077,  0.50161013,  0.53758892,  0.39461579,  0.39886398,
+          0.14009314,  0.043938  , -0.02792891],
+        [ 0.35181603,  0.43886881,  0.12985086, -0.37504324, -0.69636886,
+          0.14381082, -0.10584693,  0.09636524],
+        [ 0.35643678,  0.14063341, -0.39361283, -0.4335675 ,  0.34412457,
+          0.16100094,  0.29529994, -0.52793764],
+        [ 0.35691508,  0.03039995, -0.4499346 , -0.00471371,  0.27090665,
+          0.15412507, -0.11522952,  0.74753014],
+        [ 0.3562823 , -0.17039258, -0.31042532,  0.51455436, -0.20663893,
+          0.13955189, -0.52456012, -0.38152526],
+        [ 0.35280296, -0.40027876,  0.06099548,  0.29974253, -0.29806906,
+          0.11453897,  0.71636096,  0.08126244],
+        [ 0.34709075, -0.58660994,  0.48531459, -0.40125421,  0.18049544,
+          0.08951776, -0.31312446,  0.01557649],
+        [ 0.35731814,  0.04137142, -0.03391339,  0.00111137,  0.00651078,
+         -0.93242114,  0.00164623, -0.00255259]]))</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Perform PCA manually</span>
+<span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">standardisedX</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">pca_summary</span><span class="p">(</span><span class="n">pca</span><span class="p">,</span> <span class="n">standardised_data</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;PC&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">standardised_data</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[:</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">([(</span><span class="s2">&quot;sdev&quot;</span><span class="p">,</span> <span class="s2">&quot;Standard deviation&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;varprop&quot;</span><span class="p">,</span><span class="s2">&quot;Proportion of Variance&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;cumprop&quot;</span><span class="p">,</span> <span class="s2">&quot;Cumulative Proportion&quot;</span><span class="p">)])</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">names</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">out</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Importance of components:&quot;</span><span class="p">)</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+        <span class="k">pass</span>
+    <span class="k">return</span> <span class="n">summary</span>
+<span class="n">summary</span> <span class="o">=</span> <span class="n">pca_summary</span><span class="p">(</span><span class="n">pca</span><span class="p">,</span> <span class="n">standardisedX</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">sdev</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Importance of components:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea">
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th>sdev</th>
+      <th>varprop</th>
+      <th>cumprop</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Standard deviation</th>
+      <th>Proportion of Variance</th>
+      <th>Cumulative Proportion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>PC1</th>
+      <td>2.798234e+00</td>
+      <td>9.787641e-01</td>
+      <td>0.978764</td>
+    </tr>
+    <tr>
+      <th>PC2</th>
+      <td>3.954124e-01</td>
+      <td>1.954387e-02</td>
+      <td>0.998308</td>
+    </tr>
+    <tr>
+      <th>PC3</th>
+      <td>1.057999e-01</td>
+      <td>1.399204e-03</td>
+      <td>0.999707</td>
+    </tr>
+    <tr>
+      <th>PC4</th>
+      <td>3.587091e-02</td>
+      <td>1.608402e-04</td>
+      <td>0.999868</td>
+    </tr>
+    <tr>
+      <th>PC5</th>
+      <td>2.663662e-02</td>
+      <td>8.868870e-05</td>
+      <td>0.999957</td>
+    </tr>
+    <tr>
+      <th>PC6</th>
+      <td>1.492222e-02</td>
+      <td>2.783407e-05</td>
+      <td>0.999985</td>
+    </tr>
+    <tr>
+      <th>PC7</th>
+      <td>1.111265e-02</td>
+      <td>1.543639e-05</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>PC8</th>
+      <td>1.661647e-10</td>
+      <td>3.451339e-21</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[18]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Standard deviation    8.0
+dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Display the importance of the factors</span>
+<span class="n">ratio</span> <span class="o">=</span> <span class="n">eig_val</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">eig_val</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">ratio</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">ratio</span><span class="p">[:</span><span class="mi">7</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;F&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">a</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Importance of principal components&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[9.78764128e-01 1.95438687e-02 1.39920360e-03 1.60840244e-04
+ 8.86886963e-05 4.90768143e-17 2.78340709e-05 1.54363873e-05]
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea">
+<img src="javascript://"/>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Calculate vector of means</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">eig_vec</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0.3535353508839999
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># calculate principal components</span>
+<span class="k">def</span> <span class="nf">calcpc</span><span class="p">(</span><span class="n">variables</span><span class="p">,</span> <span class="n">loadings</span><span class="p">):</span>
+    <span class="n">numsamples</span><span class="p">,</span> <span class="n">numvariables</span> <span class="o">=</span> <span class="n">variables</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">pc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">numsamples</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numsamples</span><span class="p">):</span>
+        <span class="n">valuei</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numvariables</span><span class="p">):</span>
+            <span class="n">valueij</span> <span class="o">=</span> <span class="n">variables</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span>
+            <span class="n">loadingj</span> <span class="o">=</span> <span class="n">loadings</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">valuei</span> <span class="o">=</span> <span class="n">valuei</span> <span class="o">+</span> <span class="p">(</span><span class="n">valueij</span> <span class="o">*</span> <span class="n">loadingj</span><span class="p">)</span>
+            <span class="n">pc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">valuei</span>
+            <span class="k">pass</span>
+        <span class="k">pass</span>
+    <span class="k">return</span> <span class="n">pc</span>
+<span class="c1">#  Calculate vector of first 3 loadings and 3 factors.</span>
+
+<span class="n">pc1</span> <span class="o">=</span> <span class="n">calcpc</span><span class="p">(</span><span class="n">standardisedX</span><span class="p">,</span> <span class="n">eig_vec</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">pc1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">pc1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pc1</span><span class="p">)</span>
+<span class="n">pc2</span> <span class="o">=</span> <span class="n">calcpc</span><span class="p">(</span><span class="n">standardisedX</span><span class="p">,</span> <span class="n">eig_vec</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">pc2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">pc2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pc2</span><span class="p">)</span>
+<span class="n">pc3</span> <span class="o">=</span> <span class="n">calcpc</span><span class="p">(</span><span class="n">standardisedX</span><span class="p">,</span> <span class="n">eig_vec</span><span class="p">[:,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">pc3</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">pc3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pc3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[ 5.7172618   5.73732951  6.15790957 ... -3.73535109 -3.74201776
+ -3.75710547]
+[ 0.67563126  0.70847772  0.86479573 ... -0.11638276 -0.10940943
+ -0.09625319]
+[ 0.43030374  0.42965544  0.49049399 ... -0.02126805 -0.02373944
+ -0.02314816]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">eig_vec</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">eig_vec</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">eig_vec</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Loadings&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Maturities&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea">
+<img src="javascript://"/>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#Task 4</span>
+<span class="c1">#correlate your loadings components with the output and check which column is correlated with the output</span>
+<span class="n">loadings</span> <span class="o">=</span> <span class="n">eig_vec</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:]</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[</span><span class="s1">&#39;Output1&#39;</span><span class="p">]</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="p">[:</span><span class="mi">8</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">loadings</span><span class="p">)</span>
+<span class="n">b</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="n">c</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">],</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">d</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[23]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>Output1</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.000000</td>
+      <td>1.539037e-01</td>
+      <td>-9.052008e-01</td>
+      <td>1.594004e-01</td>
+      <td>6.139978e-03</td>
+      <td>-3.575870e-01</td>
+      <td>5.305232e-02</td>
+      <td>-2.764476e-02</td>
+      <td>0.316148</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.153904</td>
+      <td>1.000000e+00</td>
+      <td>1.421778e-05</td>
+      <td>-2.503665e-06</td>
+      <td>-9.643921e-08</td>
+      <td>5.616536e-06</td>
+      <td>-8.332804e-07</td>
+      <td>4.342098e-07</td>
+      <td>-0.869002</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.905201</td>
+      <td>1.421778e-05</td>
+      <td>1.000000e+00</td>
+      <td>1.472557e-05</td>
+      <td>5.672174e-07</td>
+      <td>-3.303425e-05</td>
+      <td>4.901027e-06</td>
+      <td>-2.553851e-06</td>
+      <td>-0.414222</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.159400</td>
+      <td>-2.503665e-06</td>
+      <td>1.472557e-05</td>
+      <td>1.000000e+00</td>
+      <td>-9.988313e-08</td>
+      <td>5.817130e-06</td>
+      <td>-8.630408e-07</td>
+      <td>4.497176e-07</td>
+      <td>0.172591</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.006140</td>
+      <td>-9.643921e-08</td>
+      <td>5.672174e-07</td>
+      <td>-9.988313e-08</td>
+      <td>1.000000e+00</td>
+      <td>2.240716e-07</td>
+      <td>-3.324314e-08</td>
+      <td>1.732269e-08</td>
+      <td>0.059451</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>-0.357587</td>
+      <td>5.616536e-06</td>
+      <td>-3.303425e-05</td>
+      <td>5.817130e-06</td>
+      <td>2.240716e-07</td>
+      <td>1.000000e+00</td>
+      <td>1.936083e-06</td>
+      <td>-1.008863e-06</td>
+      <td>-0.140845</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0.053052</td>
+      <td>-8.332804e-07</td>
+      <td>4.901027e-06</td>
+      <td>-8.630408e-07</td>
+      <td>-3.324314e-08</td>
+      <td>1.936083e-06</td>
+      <td>1.000000e+00</td>
+      <td>1.496781e-07</td>
+      <td>-0.109320</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>-0.027645</td>
+      <td>4.342098e-07</td>
+      <td>-2.553851e-06</td>
+      <td>4.497176e-07</td>
+      <td>1.732269e-08</td>
+      <td>-1.008863e-06</td>
+      <td>1.496781e-07</td>
+      <td>1.000000e+00</td>
+      <td>-0.090287</td>
+    </tr>
+    <tr>
+      <th>Output1</th>
+      <td>0.316148</td>
+      <td>-8.690022e-01</td>
+      <td>-4.142219e-01</td>
+      <td>1.725908e-01</td>
+      <td>5.945103e-02</td>
+      <td>-1.408448e-01</td>
+      <td>-1.093197e-01</td>
+      <td>-9.028700e-02</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[&#160;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#Task 5</span>
+<span class="c1">#Task 5: You need to follow the workshop 2.</span>
+<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">scale</span>
+<span class="n">dat11</span> <span class="o">=</span> <span class="n">dat</span><span class="p">[[</span><span class="s1">&#39;USGG3M&#39;</span><span class="p">,</span> <span class="s1">&#39;USGG6M&#39;</span><span class="p">,</span> <span class="s1">&#39;USGG2YR&#39;</span><span class="p">,</span> <span class="s1">&#39;USGG3YR&#39;</span><span class="p">,</span> <span class="s1">&#39;USGG5YR&#39;</span><span class="p">,</span> <span class="s1">&#39;USGG10YR&#39;</span><span class="p">,</span> <span class="s1">&#39;USGG30YR&#39;</span><span class="p">,</span> <span class="s1">&#39;Output1&#39;</span><span class="p">]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">dat11</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dat11</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+
+<span class="c1">#Standerlize</span>
+<span class="n">dat11_scale</span> <span class="o">=</span> <span class="n">scale</span><span class="p">(</span><span class="n">dat11</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">dat11_scale</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span> <span class="n">dat11_scale</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dat11_scale</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>USGG3M      4.675134e+00
+USGG6M      4.844370e+00
+USGG2YR     5.438888e+00
+USGG3YR     5.644458e+00
+USGG5YR     6.009421e+00
+USGG10YR    6.481316e+00
+USGG30YR    6.869355e+00
+Output1     1.421669e-11
+dtype: float64
+USGG3M      3.429343
+USGG6M      3.464175
+USGG2YR     3.644750
+USGG3YR     3.564919
+USGG5YR     3.397511
+USGG10YR    3.095720
+USGG30YR    2.761214
+Output1     8.763814
+dtype: float64
+[[ 2.57932761  2.38040131  1.87955959 ...  1.83189222  1.73942817
+   2.05579567]
+ [ 2.59682473  2.40060936  1.91797332 ...  1.81897038  1.73942817
+   2.06445364]
+ [ 2.86511386  2.61423729  2.0551652  ...  1.90619282  1.81910806
+   2.21918054]
+ ...
+ [-1.3574363  -1.38386716 -1.36714124 ... -1.26091864 -1.2568617
+  -1.33878844]
+ [-1.3574363  -1.38533946 -1.36052859 ... -1.26702421 -1.26323609
+  -1.34075924]
+ [-1.35597821 -1.38386716 -1.36486385 ... -1.27923535 -1.27616597
+  -1.34563512]]
+[-3.42430234e-18 -1.33547791e-16  3.42430234e-18  7.87589538e-17
+  3.42430234e-17 -3.08187211e-17 -4.48583607e-16  9.58804655e-17]
+[1. 1. 1. 1. 1. 1. 1. 1.]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">standardisedX</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">pca_summary</span><span class="p">(</span><span class="n">pca</span><span class="p">,</span> <span class="n">standardised_data</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;PC&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">standardised_data</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">[:</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">([(</span><span class="s2">&quot;sdev&quot;</span><span class="p">,</span> <span class="s2">&quot;Standard deviation&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;varprop&quot;</span><span class="p">,</span><span class="s2">&quot;Proportion of Variance&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;cumprop&quot;</span><span class="p">,</span> <span class="s2">&quot;Cumulative Proportion&quot;</span><span class="p">)])</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">),</span> <span class="n">index</span><span class="o">=</span><span class="n">names</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">out</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Importance of components:&quot;</span><span class="p">)</span>
+        <span class="n">display</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
+        <span class="k">pass</span>
+    <span class="k">return</span> <span class="n">summary</span>
+<span class="n">summary</span> <span class="o">=</span> <span class="n">pca_summary</span><span class="p">(</span><span class="n">pca</span><span class="p">,</span> <span class="n">standardisedX</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">sdev</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Importance of components:
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea">
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th>sdev</th>
+      <th>varprop</th>
+      <th>cumprop</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Standard deviation</th>
+      <th>Proportion of Variance</th>
+      <th>Cumulative Proportion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>PC1</th>
+      <td>2.798234e+00</td>
+      <td>9.787641e-01</td>
+      <td>0.978764</td>
+    </tr>
+    <tr>
+      <th>PC2</th>
+      <td>3.954124e-01</td>
+      <td>1.954387e-02</td>
+      <td>0.998308</td>
+    </tr>
+    <tr>
+      <th>PC3</th>
+      <td>1.057999e-01</td>
+      <td>1.399204e-03</td>
+      <td>0.999707</td>
+    </tr>
+    <tr>
+      <th>PC4</th>
+      <td>3.587091e-02</td>
+      <td>1.608402e-04</td>
+      <td>0.999868</td>
+    </tr>
+    <tr>
+      <th>PC5</th>
+      <td>2.663662e-02</td>
+      <td>8.868870e-05</td>
+      <td>0.999957</td>
+    </tr>
+    <tr>
+      <th>PC6</th>
+      <td>1.492222e-02</td>
+      <td>2.783407e-05</td>
+      <td>0.999985</td>
+    </tr>
+    <tr>
+      <th>PC7</th>
+      <td>1.111265e-02</td>
+      <td>1.543639e-05</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>PC8</th>
+      <td>1.661647e-10</td>
+      <td>3.451339e-21</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[25]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Standard deviation    8.0
+dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">screeplot</span><span class="p">(</span><span class="n">pca</span><span class="p">,</span> <span class="n">standardised_values</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">standardised_values</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">))</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s2">&quot;o-&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;Comp.&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">x</span><span class="p">],</span> <span class="n">rotation</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Variance&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">pass</span>
+<span class="n">screeplot</span><span class="p">(</span><span class="n">pca</span><span class="p">,</span> <span class="n">standardisedX</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea">
+<img src="javascript://"/>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[&#160;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[&#160;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[&#160;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    </div>
+  </div>
+
+
+ 
+
+
+
+<script type="module" src="https://s.brightspace.com/lib/bsi/20.23.4-263/unbundled/mathjax.js"></script><script type="text/javascript">document.addEventListener('DOMContentLoaded', function() {
+					if (document.querySelector('math') || /\$\$|\\\(|\\\[|\\begin{|\\ref{|\\eqref{/.test(document.body.innerHTML)) {
+						document.querySelectorAll('mspace[linebreak="newline"]').forEach(elm => {
+							elm.setAttribute('style', 'display: block; height: 0.5rem;');
+						});
+
+						window.D2L.MathJax.loadMathJax({
+							'outputScale': 1.3,
+							'renderLatex': true
+						});
+					}
+				});</script><script type="module" src="https://s.brightspace.com/lib/bsi/20.23.4-263/unbundled/prism.js"></script><script type="text/javascript">document.addEventListener('DOMContentLoaded', function() {
+					document.querySelectorAll('.d2l-code').forEach(code => {
+						window.D2L.Prism.formatCodeElement(code);
+					});
+				});</script></body></html>

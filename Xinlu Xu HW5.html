@@ -1,0 +1,2085 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head></head><body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+
+  <div class="border-box-sizing">
+    <div class="container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Step1: Read the data<a rel="noopener" class="anchor-link" href="#Step1:-Read-the-data">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s1">&#39;data_akbilgic.xlsx&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/opt/conda/envs/PUI/lib/python3.8/site-packages/openpyxl/worksheet/_reader.py:315: UserWarning: Unknown extension is not supported and will be removed
+  warn(msg)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[3]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>ISE</th>
+      <th>ISE.1</th>
+      <th>SP</th>
+      <th>DAX</th>
+      <th>FTSE</th>
+      <th>NIKKEI</th>
+      <th>BOVESPA</th>
+      <th>EU</th>
+      <th>EM</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2009-01-05</td>
+      <td>0.035754</td>
+      <td>0.038376</td>
+      <td>-0.004679</td>
+      <td>0.002193</td>
+      <td>0.003894</td>
+      <td>0.000000</td>
+      <td>0.031190</td>
+      <td>0.012698</td>
+      <td>0.028524</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2009-01-06</td>
+      <td>0.025426</td>
+      <td>0.031813</td>
+      <td>0.007787</td>
+      <td>0.008455</td>
+      <td>0.012866</td>
+      <td>0.004162</td>
+      <td>0.018920</td>
+      <td>0.011341</td>
+      <td>0.008773</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2009-01-07</td>
+      <td>-0.028862</td>
+      <td>-0.026353</td>
+      <td>-0.030469</td>
+      <td>-0.017833</td>
+      <td>-0.028735</td>
+      <td>0.017293</td>
+      <td>-0.035899</td>
+      <td>-0.017073</td>
+      <td>-0.020015</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2009-01-08</td>
+      <td>-0.062208</td>
+      <td>-0.084716</td>
+      <td>0.003391</td>
+      <td>-0.011726</td>
+      <td>-0.000466</td>
+      <td>-0.040061</td>
+      <td>0.028283</td>
+      <td>-0.005561</td>
+      <td>-0.019424</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2009-01-09</td>
+      <td>0.009860</td>
+      <td>0.009658</td>
+      <td>-0.021533</td>
+      <td>-0.019873</td>
+      <td>-0.012710</td>
+      <td>-0.004474</td>
+      <td>-0.009764</td>
+      <td>-0.010989</td>
+      <td>-0.007802</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[4]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>ISE</th>
+      <th>ISE.1</th>
+      <th>SP</th>
+      <th>DAX</th>
+      <th>FTSE</th>
+      <th>NIKKEI</th>
+      <th>BOVESPA</th>
+      <th>EU</th>
+      <th>EM</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>531</th>
+      <td>2011-02-16</td>
+      <td>0.008599</td>
+      <td>0.013400</td>
+      <td>0.006238</td>
+      <td>0.001925</td>
+      <td>0.007952</td>
+      <td>0.005717</td>
+      <td>0.018371</td>
+      <td>0.006975</td>
+      <td>0.003039</td>
+    </tr>
+    <tr>
+      <th>532</th>
+      <td>2011-02-17</td>
+      <td>0.009310</td>
+      <td>0.015977</td>
+      <td>0.003071</td>
+      <td>-0.001186</td>
+      <td>0.000345</td>
+      <td>0.002620</td>
+      <td>0.001686</td>
+      <td>-0.000581</td>
+      <td>0.001039</td>
+    </tr>
+    <tr>
+      <th>533</th>
+      <td>2011-02-18</td>
+      <td>0.000191</td>
+      <td>-0.001653</td>
+      <td>0.001923</td>
+      <td>0.002872</td>
+      <td>-0.000723</td>
+      <td>0.000568</td>
+      <td>0.005628</td>
+      <td>0.000572</td>
+      <td>0.006938</td>
+    </tr>
+    <tr>
+      <th>534</th>
+      <td>2011-02-21</td>
+      <td>-0.013069</td>
+      <td>-0.013706</td>
+      <td>-0.020742</td>
+      <td>-0.014239</td>
+      <td>-0.011275</td>
+      <td>0.001358</td>
+      <td>-0.011942</td>
+      <td>-0.012615</td>
+      <td>-0.000958</td>
+    </tr>
+    <tr>
+      <th>535</th>
+      <td>2011-02-22</td>
+      <td>-0.007246</td>
+      <td>-0.019442</td>
+      <td>0.000000</td>
+      <td>-0.000473</td>
+      <td>-0.002997</td>
+      <td>-0.017920</td>
+      <td>-0.012252</td>
+      <td>-0.005465</td>
+      <td>-0.014297</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Step2:  Build the correlation matrix between all the exchange returns<a rel="noopener" class="anchor-link" href="#Step2:--Build-the-correlation-matrix-between-all-the-exchange-returns">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#pip install mlxtend</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[6]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>date</th>
+      <th>ISE</th>
+      <th>ISE.1</th>
+      <th>SP</th>
+      <th>DAX</th>
+      <th>FTSE</th>
+      <th>NIKKEI</th>
+      <th>BOVESPA</th>
+      <th>EU</th>
+      <th>EM</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2009-01-05</td>
+      <td>0.035754</td>
+      <td>0.038376</td>
+      <td>-0.004679</td>
+      <td>0.002193</td>
+      <td>0.003894</td>
+      <td>0.000000</td>
+      <td>0.031190</td>
+      <td>0.012698</td>
+      <td>0.028524</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2009-01-06</td>
+      <td>0.025426</td>
+      <td>0.031813</td>
+      <td>0.007787</td>
+      <td>0.008455</td>
+      <td>0.012866</td>
+      <td>0.004162</td>
+      <td>0.018920</td>
+      <td>0.011341</td>
+      <td>0.008773</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2009-01-07</td>
+      <td>-0.028862</td>
+      <td>-0.026353</td>
+      <td>-0.030469</td>
+      <td>-0.017833</td>
+      <td>-0.028735</td>
+      <td>0.017293</td>
+      <td>-0.035899</td>
+      <td>-0.017073</td>
+      <td>-0.020015</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2009-01-08</td>
+      <td>-0.062208</td>
+      <td>-0.084716</td>
+      <td>0.003391</td>
+      <td>-0.011726</td>
+      <td>-0.000466</td>
+      <td>-0.040061</td>
+      <td>0.028283</td>
+      <td>-0.005561</td>
+      <td>-0.019424</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2009-01-09</td>
+      <td>0.009860</td>
+      <td>0.009658</td>
+      <td>-0.021533</td>
+      <td>-0.019873</td>
+      <td>-0.012710</td>
+      <td>-0.004474</td>
+      <td>-0.009764</td>
+      <td>-0.010989</td>
+      <td>-0.007802</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>531</th>
+      <td>2011-02-16</td>
+      <td>0.008599</td>
+      <td>0.013400</td>
+      <td>0.006238</td>
+      <td>0.001925</td>
+      <td>0.007952</td>
+      <td>0.005717</td>
+      <td>0.018371</td>
+      <td>0.006975</td>
+      <td>0.003039</td>
+    </tr>
+    <tr>
+      <th>532</th>
+      <td>2011-02-17</td>
+      <td>0.009310</td>
+      <td>0.015977</td>
+      <td>0.003071</td>
+      <td>-0.001186</td>
+      <td>0.000345</td>
+      <td>0.002620</td>
+      <td>0.001686</td>
+      <td>-0.000581</td>
+      <td>0.001039</td>
+    </tr>
+    <tr>
+      <th>533</th>
+      <td>2011-02-18</td>
+      <td>0.000191</td>
+      <td>-0.001653</td>
+      <td>0.001923</td>
+      <td>0.002872</td>
+      <td>-0.000723</td>
+      <td>0.000568</td>
+      <td>0.005628</td>
+      <td>0.000572</td>
+      <td>0.006938</td>
+    </tr>
+    <tr>
+      <th>534</th>
+      <td>2011-02-21</td>
+      <td>-0.013069</td>
+      <td>-0.013706</td>
+      <td>-0.020742</td>
+      <td>-0.014239</td>
+      <td>-0.011275</td>
+      <td>0.001358</td>
+      <td>-0.011942</td>
+      <td>-0.012615</td>
+      <td>-0.000958</td>
+    </tr>
+    <tr>
+      <th>535</th>
+      <td>2011-02-22</td>
+      <td>-0.007246</td>
+      <td>-0.019442</td>
+      <td>0.000000</td>
+      <td>-0.000473</td>
+      <td>-0.002997</td>
+      <td>-0.017920</td>
+      <td>-0.012252</td>
+      <td>-0.005465</td>
+      <td>-0.014297</td>
+    </tr>
+  </tbody>
+</table>
+<p>536 rows &#215; 10 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">dfcorrmat</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">corr</span><span class="p">()</span>
+<span class="n">dfcorrmat</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ISE</th>
+      <th>ISE.1</th>
+      <th>SP</th>
+      <th>DAX</th>
+      <th>FTSE</th>
+      <th>NIKKEI</th>
+      <th>BOVESPA</th>
+      <th>EU</th>
+      <th>EM</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>ISE</th>
+      <td>1.000000</td>
+      <td>0.942897</td>
+      <td>0.439489</td>
+      <td>0.602081</td>
+      <td>0.622948</td>
+      <td>0.260052</td>
+      <td>0.432898</td>
+      <td>0.655519</td>
+      <td>0.600295</td>
+    </tr>
+    <tr>
+      <th>ISE.1</th>
+      <td>0.942897</td>
+      <td>1.000000</td>
+      <td>0.449561</td>
+      <td>0.629218</td>
+      <td>0.648740</td>
+      <td>0.393225</td>
+      <td>0.446889</td>
+      <td>0.690761</td>
+      <td>0.701954</td>
+    </tr>
+    <tr>
+      <th>SP</th>
+      <td>0.439489</td>
+      <td>0.449561</td>
+      <td>1.000000</td>
+      <td>0.685843</td>
+      <td>0.657673</td>
+      <td>0.131250</td>
+      <td>0.722069</td>
+      <td>0.687550</td>
+      <td>0.528243</td>
+    </tr>
+    <tr>
+      <th>DAX</th>
+      <td>0.602081</td>
+      <td>0.629218</td>
+      <td>0.685843</td>
+      <td>1.000000</td>
+      <td>0.867369</td>
+      <td>0.258538</td>
+      <td>0.585791</td>
+      <td>0.936393</td>
+      <td>0.665162</td>
+    </tr>
+    <tr>
+      <th>FTSE</th>
+      <td>0.622948</td>
+      <td>0.648740</td>
+      <td>0.657673</td>
+      <td>0.867369</td>
+      <td>1.000000</td>
+      <td>0.255236</td>
+      <td>0.596287</td>
+      <td>0.948963</td>
+      <td>0.687543</td>
+    </tr>
+    <tr>
+      <th>NIKKEI</th>
+      <td>0.260052</td>
+      <td>0.393225</td>
+      <td>0.131250</td>
+      <td>0.258538</td>
+      <td>0.255236</td>
+      <td>1.000000</td>
+      <td>0.172752</td>
+      <td>0.283750</td>
+      <td>0.547288</td>
+    </tr>
+    <tr>
+      <th>BOVESPA</th>
+      <td>0.432898</td>
+      <td>0.446889</td>
+      <td>0.722069</td>
+      <td>0.585791</td>
+      <td>0.596287</td>
+      <td>0.172752</td>
+      <td>1.000000</td>
+      <td>0.621704</td>
+      <td>0.688074</td>
+    </tr>
+    <tr>
+      <th>EU</th>
+      <td>0.655519</td>
+      <td>0.690761</td>
+      <td>0.687550</td>
+      <td>0.936393</td>
+      <td>0.948963</td>
+      <td>0.283750</td>
+      <td>0.621704</td>
+      <td>1.000000</td>
+      <td>0.716502</td>
+    </tr>
+    <tr>
+      <th>EM</th>
+      <td>0.600295</td>
+      <td>0.701954</td>
+      <td>0.528243</td>
+      <td>0.665162</td>
+      <td>0.687543</td>
+      <td>0.547288</td>
+      <td>0.688074</td>
+      <td>0.716502</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Step3: Following the method of the workshop session 5, find a way to adapt the Association Rules methodology to this problem. You may need to make these return categorical.<a rel="noopener" class="anchor-link" href="#Step3:-Following-the-method-of-the-workshop-session-5,-find-a-way-to-adapt-the-Association-Rules-methodology-to-this-problem.-You-may-need-to-make-these-return-categorical.">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">mlxtend.frequent_patterns</span> <span class="kn">import</span> <span class="n">apriori</span>
+<span class="kn">from</span> <span class="nn">mlxtend.frequent_patterns</span> <span class="kn">import</span> <span class="n">association_rules</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">norm</span>
+<span class="kn">import</span> <span class="nn">scipy.stats</span> <span class="k">as</span> <span class="nn">stats</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">AR</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;date&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">AR</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+<span class="n">a</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ISE</th>
+      <th>ISE.1</th>
+      <th>SP</th>
+      <th>DAX</th>
+      <th>FTSE</th>
+      <th>NIKKEI</th>
+      <th>BOVESPA</th>
+      <th>EU</th>
+      <th>EM</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.035754</td>
+      <td>0.038376</td>
+      <td>-0.004679</td>
+      <td>0.002193</td>
+      <td>0.003894</td>
+      <td>0.000000</td>
+      <td>0.031190</td>
+      <td>0.012698</td>
+      <td>0.028524</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.025426</td>
+      <td>0.031813</td>
+      <td>0.007787</td>
+      <td>0.008455</td>
+      <td>0.012866</td>
+      <td>0.004162</td>
+      <td>0.018920</td>
+      <td>0.011341</td>
+      <td>0.008773</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>-0.028862</td>
+      <td>-0.026353</td>
+      <td>-0.030469</td>
+      <td>-0.017833</td>
+      <td>-0.028735</td>
+      <td>0.017293</td>
+      <td>-0.035899</td>
+      <td>-0.017073</td>
+      <td>-0.020015</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>-0.062208</td>
+      <td>-0.084716</td>
+      <td>0.003391</td>
+      <td>-0.011726</td>
+      <td>-0.000466</td>
+      <td>-0.040061</td>
+      <td>0.028283</td>
+      <td>-0.005561</td>
+      <td>-0.019424</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.009860</td>
+      <td>0.009658</td>
+      <td>-0.021533</td>
+      <td>-0.019873</td>
+      <td>-0.012710</td>
+      <td>-0.004474</td>
+      <td>-0.009764</td>
+      <td>-0.010989</td>
+      <td>-0.007802</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>531</th>
+      <td>0.008599</td>
+      <td>0.013400</td>
+      <td>0.006238</td>
+      <td>0.001925</td>
+      <td>0.007952</td>
+      <td>0.005717</td>
+      <td>0.018371</td>
+      <td>0.006975</td>
+      <td>0.003039</td>
+    </tr>
+    <tr>
+      <th>532</th>
+      <td>0.009310</td>
+      <td>0.015977</td>
+      <td>0.003071</td>
+      <td>-0.001186</td>
+      <td>0.000345</td>
+      <td>0.002620</td>
+      <td>0.001686</td>
+      <td>-0.000581</td>
+      <td>0.001039</td>
+    </tr>
+    <tr>
+      <th>533</th>
+      <td>0.000191</td>
+      <td>-0.001653</td>
+      <td>0.001923</td>
+      <td>0.002872</td>
+      <td>-0.000723</td>
+      <td>0.000568</td>
+      <td>0.005628</td>
+      <td>0.000572</td>
+      <td>0.006938</td>
+    </tr>
+    <tr>
+      <th>534</th>
+      <td>-0.013069</td>
+      <td>-0.013706</td>
+      <td>-0.020742</td>
+      <td>-0.014239</td>
+      <td>-0.011275</td>
+      <td>0.001358</td>
+      <td>-0.011942</td>
+      <td>-0.012615</td>
+      <td>-0.000958</td>
+    </tr>
+    <tr>
+      <th>535</th>
+      <td>-0.007246</td>
+      <td>-0.019442</td>
+      <td>0.000000</td>
+      <td>-0.000473</td>
+      <td>-0.002997</td>
+      <td>-0.017920</td>
+      <td>-0.012252</td>
+      <td>-0.005465</td>
+      <td>-0.014297</td>
+    </tr>
+  </tbody>
+</table>
+<p>536 rows &#215; 9 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="p">[</span><span class="s1">&#39;ISE&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">hist</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[10]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;AxesSubplot:ylabel=&#39;Frequency&#39;&gt;</pre>
+</div>
+
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea">
+<img src="javascript://"/>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">encode_units</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mf">0.01</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="mf">0.01</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+
+<span class="n">a_sets</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">applymap</span><span class="p">(</span><span class="n">encode_units</span><span class="p">)</span>
+<span class="n">a_sets</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[16]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>ISE</th>
+      <th>ISE.1</th>
+      <th>SP</th>
+      <th>DAX</th>
+      <th>FTSE</th>
+      <th>NIKKEI</th>
+      <th>BOVESPA</th>
+      <th>EU</th>
+      <th>EM</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>531</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>532</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>533</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>534</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>535</th>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>536 rows &#215; 9 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#a_sets.corr()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">frequent_itemsets</span> <span class="o">=</span> <span class="n">apriori</span><span class="p">(</span><span class="n">a_sets</span><span class="p">,</span> <span class="n">min_support</span><span class="o">=</span><span class="mf">0.07</span><span class="p">,</span> <span class="n">use_colnames</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">frequent_itemsets</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[19]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>support</th>
+      <th>itemsets</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.264925</td>
+      <td>(ISE)</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.319030</td>
+      <td>(ISE.1)</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.184701</td>
+      <td>(SP)</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.210821</td>
+      <td>(DAX)</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.169776</td>
+      <td>(FTSE)</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>149</th>
+      <td>0.074627</td>
+      <td>(SP, BOVESPA, EU, ISE.1, DAX)</td>
+    </tr>
+    <tr>
+      <th>150</th>
+      <td>0.074627</td>
+      <td>(BOVESPA, EU, FTSE, ISE.1, DAX)</td>
+    </tr>
+    <tr>
+      <th>151</th>
+      <td>0.078358</td>
+      <td>(EM, EU, FTSE, ISE.1, DAX)</td>
+    </tr>
+    <tr>
+      <th>152</th>
+      <td>0.080224</td>
+      <td>(SP, BOVESPA, EU, FTSE, DAX)</td>
+    </tr>
+    <tr>
+      <th>153</th>
+      <td>0.070896</td>
+      <td>(SP, EU, FTSE, ISE.1, DAX, ISE)</td>
+    </tr>
+  </tbody>
+</table>
+<p>154 rows &#215; 2 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">rules</span> <span class="o">=</span> <span class="n">association_rules</span><span class="p">(</span><span class="n">frequent_itemsets</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s2">&quot;lift&quot;</span><span class="p">,</span> <span class="n">min_threshold</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">rules</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[20]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>antecedents</th>
+      <th>consequents</th>
+      <th>antecedent support</th>
+      <th>consequent support</th>
+      <th>support</th>
+      <th>confidence</th>
+      <th>lift</th>
+      <th>leverage</th>
+      <th>conviction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>(ISE.1)</td>
+      <td>(ISE)</td>
+      <td>0.319030</td>
+      <td>0.264925</td>
+      <td>0.244403</td>
+      <td>0.766082</td>
+      <td>2.891689</td>
+      <td>0.159884</td>
+      <td>3.142444</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>(ISE)</td>
+      <td>(ISE.1)</td>
+      <td>0.264925</td>
+      <td>0.319030</td>
+      <td>0.244403</td>
+      <td>0.922535</td>
+      <td>2.891689</td>
+      <td>0.159884</td>
+      <td>8.790706</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>(SP)</td>
+      <td>(ISE)</td>
+      <td>0.184701</td>
+      <td>0.264925</td>
+      <td>0.108209</td>
+      <td>0.585859</td>
+      <td>2.211410</td>
+      <td>0.059277</td>
+      <td>1.774936</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>(ISE)</td>
+      <td>(SP)</td>
+      <td>0.264925</td>
+      <td>0.184701</td>
+      <td>0.108209</td>
+      <td>0.408451</td>
+      <td>2.211410</td>
+      <td>0.059277</td>
+      <td>1.378243</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>(ISE)</td>
+      <td>(DAX)</td>
+      <td>0.264925</td>
+      <td>0.210821</td>
+      <td>0.134328</td>
+      <td>0.507042</td>
+      <td>2.405085</td>
+      <td>0.078477</td>
+      <td>1.600906</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1569</th>
+      <td>(EU)</td>
+      <td>(SP, FTSE, ISE.1, DAX, ISE)</td>
+      <td>0.195896</td>
+      <td>0.072761</td>
+      <td>0.070896</td>
+      <td>0.361905</td>
+      <td>4.973871</td>
+      <td>0.056642</td>
+      <td>1.453135</td>
+    </tr>
+    <tr>
+      <th>1570</th>
+      <td>(FTSE)</td>
+      <td>(SP, EU, ISE.1, DAX, ISE)</td>
+      <td>0.169776</td>
+      <td>0.078358</td>
+      <td>0.070896</td>
+      <td>0.417582</td>
+      <td>5.329147</td>
+      <td>0.057592</td>
+      <td>1.582442</td>
+    </tr>
+    <tr>
+      <th>1571</th>
+      <td>(ISE.1)</td>
+      <td>(SP, EU, FTSE, DAX, ISE)</td>
+      <td>0.319030</td>
+      <td>0.072761</td>
+      <td>0.070896</td>
+      <td>0.222222</td>
+      <td>3.054131</td>
+      <td>0.047683</td>
+      <td>1.192164</td>
+    </tr>
+    <tr>
+      <th>1572</th>
+      <td>(DAX)</td>
+      <td>(SP, EU, FTSE, ISE.1, ISE)</td>
+      <td>0.210821</td>
+      <td>0.074627</td>
+      <td>0.070896</td>
+      <td>0.336283</td>
+      <td>4.506195</td>
+      <td>0.055163</td>
+      <td>1.394229</td>
+    </tr>
+    <tr>
+      <th>1573</th>
+      <td>(ISE)</td>
+      <td>(SP, EU, FTSE, ISE.1, DAX)</td>
+      <td>0.264925</td>
+      <td>0.074627</td>
+      <td>0.070896</td>
+      <td>0.267606</td>
+      <td>3.585915</td>
+      <td>0.051125</td>
+      <td>1.263490</td>
+    </tr>
+  </tbody>
+</table>
+<p>1574 rows &#215; 9 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">rules</span><span class="p">[</span><span class="s1">&#39;lift&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[21]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>8.16025641025641</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">rules</span><span class="p">[</span> <span class="p">(</span><span class="n">rules</span><span class="p">[</span><span class="s1">&#39;lift&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">rules</span><span class="p">[</span><span class="s1">&#39;confidence&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.8</span><span class="p">)</span> <span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[22]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>antecedents</th>
+      <th>consequents</th>
+      <th>antecedent support</th>
+      <th>consequent support</th>
+      <th>support</th>
+      <th>confidence</th>
+      <th>lift</th>
+      <th>leverage</th>
+      <th>conviction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>(ISE)</td>
+      <td>(ISE.1)</td>
+      <td>0.264925</td>
+      <td>0.319030</td>
+      <td>0.244403</td>
+      <td>0.922535</td>
+      <td>2.891689</td>
+      <td>0.159884</td>
+      <td>8.790706</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>(FTSE)</td>
+      <td>(DAX)</td>
+      <td>0.169776</td>
+      <td>0.210821</td>
+      <td>0.139925</td>
+      <td>0.824176</td>
+      <td>3.909365</td>
+      <td>0.104133</td>
+      <td>4.488456</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>(EU)</td>
+      <td>(DAX)</td>
+      <td>0.195896</td>
+      <td>0.210821</td>
+      <td>0.177239</td>
+      <td>0.904762</td>
+      <td>4.291614</td>
+      <td>0.135940</td>
+      <td>8.286381</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>(DAX)</td>
+      <td>(EU)</td>
+      <td>0.210821</td>
+      <td>0.195896</td>
+      <td>0.177239</td>
+      <td>0.840708</td>
+      <td>4.291614</td>
+      <td>0.135940</td>
+      <td>5.047989</td>
+    </tr>
+    <tr>
+      <th>51</th>
+      <td>(FTSE)</td>
+      <td>(EU)</td>
+      <td>0.169776</td>
+      <td>0.195896</td>
+      <td>0.151119</td>
+      <td>0.890110</td>
+      <td>4.543799</td>
+      <td>0.117861</td>
+      <td>7.317351</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1536</th>
+      <td>(EU, SP, ISE)</td>
+      <td>(FTSE, ISE.1, DAX)</td>
+      <td>0.085821</td>
+      <td>0.108209</td>
+      <td>0.070896</td>
+      <td>0.826087</td>
+      <td>7.634183</td>
+      <td>0.061609</td>
+      <td>5.127799</td>
+    </tr>
+    <tr>
+      <th>1537</th>
+      <td>(FTSE, SP, ISE.1)</td>
+      <td>(EU, ISE, DAX)</td>
+      <td>0.082090</td>
+      <td>0.117537</td>
+      <td>0.070896</td>
+      <td>0.863636</td>
+      <td>7.347763</td>
+      <td>0.061247</td>
+      <td>6.471393</td>
+    </tr>
+    <tr>
+      <th>1539</th>
+      <td>(FTSE, SP, ISE)</td>
+      <td>(EU, ISE.1, DAX)</td>
+      <td>0.082090</td>
+      <td>0.130597</td>
+      <td>0.070896</td>
+      <td>0.863636</td>
+      <td>6.612987</td>
+      <td>0.060175</td>
+      <td>6.375622</td>
+    </tr>
+    <tr>
+      <th>1540</th>
+      <td>(SP, ISE.1, DAX)</td>
+      <td>(EU, FTSE, ISE)</td>
+      <td>0.085821</td>
+      <td>0.102612</td>
+      <td>0.070896</td>
+      <td>0.826087</td>
+      <td>8.050593</td>
+      <td>0.062089</td>
+      <td>5.159981</td>
+    </tr>
+    <tr>
+      <th>1542</th>
+      <td>(SP, ISE, DAX)</td>
+      <td>(EU, FTSE, ISE.1)</td>
+      <td>0.083955</td>
+      <td>0.115672</td>
+      <td>0.070896</td>
+      <td>0.844444</td>
+      <td>7.300358</td>
+      <td>0.061184</td>
+      <td>5.684968</td>
+    </tr>
+  </tbody>
+</table>
+<p>383 rows &#215; 9 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">rules</span><span class="p">[</span> <span class="p">(</span><span class="n">rules</span><span class="p">[</span><span class="s1">&#39;lift&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">rules</span><span class="p">[</span><span class="s1">&#39;confidence&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.9</span><span class="p">)</span> <span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[23]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>antecedents</th>
+      <th>consequents</th>
+      <th>antecedent support</th>
+      <th>consequent support</th>
+      <th>support</th>
+      <th>confidence</th>
+      <th>lift</th>
+      <th>leverage</th>
+      <th>conviction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>(ISE)</td>
+      <td>(ISE.1)</td>
+      <td>0.264925</td>
+      <td>0.319030</td>
+      <td>0.244403</td>
+      <td>0.922535</td>
+      <td>2.891689</td>
+      <td>0.159884</td>
+      <td>8.790706</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>(EU)</td>
+      <td>(DAX)</td>
+      <td>0.195896</td>
+      <td>0.210821</td>
+      <td>0.177239</td>
+      <td>0.904762</td>
+      <td>4.291614</td>
+      <td>0.135940</td>
+      <td>8.286381</td>
+    </tr>
+    <tr>
+      <th>60</th>
+      <td>(SP, ISE.1)</td>
+      <td>(ISE)</td>
+      <td>0.110075</td>
+      <td>0.264925</td>
+      <td>0.100746</td>
+      <td>0.915254</td>
+      <td>3.454762</td>
+      <td>0.071585</td>
+      <td>8.673881</td>
+    </tr>
+    <tr>
+      <th>61</th>
+      <td>(SP, ISE)</td>
+      <td>(ISE.1)</td>
+      <td>0.108209</td>
+      <td>0.319030</td>
+      <td>0.100746</td>
+      <td>0.931034</td>
+      <td>2.918330</td>
+      <td>0.066224</td>
+      <td>9.874067</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>(ISE, DAX)</td>
+      <td>(ISE.1)</td>
+      <td>0.134328</td>
+      <td>0.319030</td>
+      <td>0.130597</td>
+      <td>0.972222</td>
+      <td>3.047433</td>
+      <td>0.087742</td>
+      <td>24.514925</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1518</th>
+      <td>(EU, FTSE, SP, ISE.1)</td>
+      <td>(ISE, DAX)</td>
+      <td>0.078358</td>
+      <td>0.134328</td>
+      <td>0.070896</td>
+      <td>0.904762</td>
+      <td>6.735450</td>
+      <td>0.060370</td>
+      <td>9.089552</td>
+    </tr>
+    <tr>
+      <th>1520</th>
+      <td>(EU, FTSE, SP, ISE)</td>
+      <td>(ISE.1, DAX)</td>
+      <td>0.076493</td>
+      <td>0.147388</td>
+      <td>0.070896</td>
+      <td>0.926829</td>
+      <td>6.288361</td>
+      <td>0.059621</td>
+      <td>11.652363</td>
+    </tr>
+    <tr>
+      <th>1524</th>
+      <td>(FTSE, SP, ISE.1, DAX)</td>
+      <td>(EU, ISE)</td>
+      <td>0.076493</td>
+      <td>0.128731</td>
+      <td>0.070896</td>
+      <td>0.926829</td>
+      <td>7.199717</td>
+      <td>0.061049</td>
+      <td>11.907338</td>
+    </tr>
+    <tr>
+      <th>1525</th>
+      <td>(FTSE, SP, ISE.1, ISE)</td>
+      <td>(EU, DAX)</td>
+      <td>0.078358</td>
+      <td>0.177239</td>
+      <td>0.070896</td>
+      <td>0.904762</td>
+      <td>5.104762</td>
+      <td>0.057007</td>
+      <td>8.638993</td>
+    </tr>
+    <tr>
+      <th>1526</th>
+      <td>(FTSE, SP, ISE, DAX)</td>
+      <td>(EU, ISE.1)</td>
+      <td>0.074627</td>
+      <td>0.143657</td>
+      <td>0.070896</td>
+      <td>0.950000</td>
+      <td>6.612987</td>
+      <td>0.060175</td>
+      <td>17.126866</td>
+    </tr>
+  </tbody>
+</table>
+<p>166 rows &#215; 9 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">rules</span><span class="p">[</span> <span class="p">(</span><span class="n">rules</span><span class="p">[</span><span class="s1">&#39;lift&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mi">6</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">rules</span><span class="p">[</span><span class="s1">&#39;confidence&#39;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">0.8</span><span class="p">)</span> <span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[24]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>antecedents</th>
+      <th>consequents</th>
+      <th>antecedent support</th>
+      <th>consequent support</th>
+      <th>support</th>
+      <th>confidence</th>
+      <th>lift</th>
+      <th>leverage</th>
+      <th>conviction</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>461</th>
+      <td>(EU, ISE)</td>
+      <td>(ISE.1, DAX)</td>
+      <td>0.128731</td>
+      <td>0.147388</td>
+      <td>0.115672</td>
+      <td>0.898551</td>
+      <td>6.096496</td>
+      <td>0.096698</td>
+      <td>8.404318</td>
+    </tr>
+    <tr>
+      <th>506</th>
+      <td>(FTSE, ISE)</td>
+      <td>(EU, ISE.1)</td>
+      <td>0.113806</td>
+      <td>0.143657</td>
+      <td>0.100746</td>
+      <td>0.885246</td>
+      <td>6.162231</td>
+      <td>0.084397</td>
+      <td>7.462420</td>
+    </tr>
+    <tr>
+      <th>924</th>
+      <td>(BOVESPA, DAX)</td>
+      <td>(EU, SP)</td>
+      <td>0.113806</td>
+      <td>0.111940</td>
+      <td>0.091418</td>
+      <td>0.803279</td>
+      <td>7.175956</td>
+      <td>0.078678</td>
+      <td>4.514303</td>
+    </tr>
+    <tr>
+      <th>925</th>
+      <td>(EU, SP)</td>
+      <td>(BOVESPA, DAX)</td>
+      <td>0.111940</td>
+      <td>0.113806</td>
+      <td>0.091418</td>
+      <td>0.816667</td>
+      <td>7.175956</td>
+      <td>0.078678</td>
+      <td>4.833786</td>
+    </tr>
+    <tr>
+      <th>927</th>
+      <td>(SP, DAX)</td>
+      <td>(BOVESPA, EU)</td>
+      <td>0.108209</td>
+      <td>0.117537</td>
+      <td>0.091418</td>
+      <td>0.844828</td>
+      <td>7.187739</td>
+      <td>0.078699</td>
+      <td>5.686982</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1536</th>
+      <td>(EU, SP, ISE)</td>
+      <td>(FTSE, ISE.1, DAX)</td>
+      <td>0.085821</td>
+      <td>0.108209</td>
+      <td>0.070896</td>
+      <td>0.826087</td>
+      <td>7.634183</td>
+      <td>0.061609</td>
+      <td>5.127799</td>
+    </tr>
+    <tr>
+      <th>1537</th>
+      <td>(FTSE, SP, ISE.1)</td>
+      <td>(EU, ISE, DAX)</td>
+      <td>0.082090</td>
+      <td>0.117537</td>
+      <td>0.070896</td>
+      <td>0.863636</td>
+      <td>7.347763</td>
+      <td>0.061247</td>
+      <td>6.471393</td>
+    </tr>
+    <tr>
+      <th>1539</th>
+      <td>(FTSE, SP, ISE)</td>
+      <td>(EU, ISE.1, DAX)</td>
+      <td>0.082090</td>
+      <td>0.130597</td>
+      <td>0.070896</td>
+      <td>0.863636</td>
+      <td>6.612987</td>
+      <td>0.060175</td>
+      <td>6.375622</td>
+    </tr>
+    <tr>
+      <th>1540</th>
+      <td>(SP, ISE.1, DAX)</td>
+      <td>(EU, FTSE, ISE)</td>
+      <td>0.085821</td>
+      <td>0.102612</td>
+      <td>0.070896</td>
+      <td>0.826087</td>
+      <td>8.050593</td>
+      <td>0.062089</td>
+      <td>5.159981</td>
+    </tr>
+    <tr>
+      <th>1542</th>
+      <td>(SP, ISE, DAX)</td>
+      <td>(EU, FTSE, ISE.1)</td>
+      <td>0.083955</td>
+      <td>0.115672</td>
+      <td>0.070896</td>
+      <td>0.844444</td>
+      <td>7.300358</td>
+      <td>0.061184</td>
+      <td>5.684968</td>
+    </tr>
+  </tbody>
+</table>
+<p>67 rows &#215; 9 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[&#160;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    </div>
+  </div>
+
+
+ 
+
+
+
+<script type="module" src="https://s.brightspace.com/lib/bsi/20.23.4-263/unbundled/mathjax.js"></script><script type="text/javascript">document.addEventListener('DOMContentLoaded', function() {
+					if (document.querySelector('math') || /\$\$|\\\(|\\\[|\\begin{|\\ref{|\\eqref{/.test(document.body.innerHTML)) {
+						document.querySelectorAll('mspace[linebreak="newline"]').forEach(elm => {
+							elm.setAttribute('style', 'display: block; height: 0.5rem;');
+						});
+
+						window.D2L.MathJax.loadMathJax({
+							'outputScale': 1.3,
+							'renderLatex': true
+						});
+					}
+				});</script><script type="module" src="https://s.brightspace.com/lib/bsi/20.23.4-263/unbundled/prism.js"></script><script type="text/javascript">document.addEventListener('DOMContentLoaded', function() {
+					document.querySelectorAll('.d2l-code').forEach(code => {
+						window.D2L.Prism.formatCodeElement(code);
+					});
+				});</script></body></html>

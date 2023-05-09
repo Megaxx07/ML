@@ -1,0 +1,661 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head></head><body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+
+  <div class="border-box-sizing">
+    <div class="container">
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">statsmodels.api</span> <span class="k">as</span> <span class="nn">sm</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>3.1 Simulationof the data<a rel="noopener" class="anchor-link" href="#3.1-Simulationof-the-data">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">6996</span><span class="p">)</span>
+<span class="c1"># error term</span>
+<span class="n">epsilon_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># X_matrix or regressors or predictiors</span>
+<span class="n">X_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="mi">500</span><span class="p">))</span>
+<span class="c1"># Slope</span>
+<span class="n">slope_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="c1"># Simulate Ys</span>
+<span class="n">Y_mat</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">X_mat</span> <span class="o">*</span> <span class="n">slope_vec</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">epsilon_vec</span>
+<span class="c1"># each col of Y_mat representing one simulation vector: starting with 2 regressors, end with 500</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Y_mat</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="c1">#plt.plot(X_mat[:,:499], Y_mat)</span>
+<span class="c1">#plt.show()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(500, 499)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">r2_score</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>3.2<a rel="noopener" class="anchor-link" href="#3.2">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Fit linear model with first 10 predictors &amp; with 491 predictors</span>
+<span class="k">def</span> <span class="nf">fit_lr</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">N_feature</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">split_ratio</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">,</span> <span class="n">out_put</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="n">train_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">*</span><span class="n">split_ratio</span><span class="p">)</span>
+    <span class="n">X_train</span> <span class="o">=</span> <span class="n">X_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">train_size</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="n">N_feature</span><span class="p">]</span>
+    <span class="n">Y_train</span> <span class="o">=</span> <span class="n">Y_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">train_size</span><span class="p">,</span><span class="n">N_feature</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">X_test</span> <span class="o">=</span> <span class="n">X_mat</span><span class="p">[</span><span class="n">train_size</span><span class="p">:,</span><span class="mi">0</span><span class="p">:</span><span class="n">N_feature</span><span class="p">]</span>
+    <span class="n">Y_test</span> <span class="o">=</span> <span class="n">Y_mat</span><span class="p">[</span><span class="n">train_size</span><span class="p">:,</span><span class="n">N_feature</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+    <span class="c1"># Create linear regression object</span>
+    <span class="n">regr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+    <span class="n">regr</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">)</span>
+    <span class="c1"># FIT LINEAR MODEL</span>
+    <span class="c1"># model evaluation</span>
+    <span class="n">mse_in</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">Y_train</span><span class="o">-</span><span class="n">regr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)))</span>
+    <span class="n">mse_out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">Y_test</span><span class="o">-</span><span class="n">regr</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)))</span>
+    <span class="k">if</span> <span class="n">out_put</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Coefficients for first </span><span class="si">%d</span><span class="s1"> predictors: </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span><span class="k">N_feature</span>,regr.coef_)
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1"> In-sample Mean Square Error: &#39;</span><span class="p">,</span> <span class="n">mse_in</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Out-of-sample Mean Square Error: &#39;</span><span class="p">,</span> <span class="n">mse_out</span><span class="p">)</span>
+        
+    <span class="k">return</span> <span class="n">regr</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">mse_out</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 1) Store the result in the variable m10</span>
+<span class="n">m10_coef</span><span class="p">,</span> <span class="n">m10_mse</span><span class="o">=</span> <span class="n">fit_lr</span><span class="p">(</span><span class="n">X_mat</span><span class="p">,</span><span class="n">Y_mat</span><span class="p">)</span>
+<span class="c1"># 2) Store the result in the variable v490</span>
+<span class="n">v490_coef</span><span class="p">,</span> <span class="n">v490_mse</span> <span class="o">=</span> <span class="n">fit_lr</span><span class="p">(</span><span class="n">X_mat</span><span class="p">,</span><span class="n">Y_mat</span><span class="p">,</span><span class="n">N_feature</span><span class="o">=</span><span class="mi">490</span><span class="p">,</span><span class="n">out_put</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Coefficients for first 10 predictors: 
+ [1.3853109  1.72559497 4.30340507 4.02834003 2.29340808 3.29861666
+ 3.31304657 4.52734012 1.54519956 4.81303334]
+
+ In-sample Mean Square Error:  1.0195788266294994
+Out-of-sample Mean Square Error:  0.77988327078053
+
+ In-sample Mean Square Error:  1.0963474324497245e-25
+Out-of-sample Mean Square Error:  4418.307691625965
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/tmp/ipykernel_110/650057807.py:3: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
+Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+  train_size = np.int(len(X)*split_ratio)
+/tmp/ipykernel_110/650057807.py:3: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
+Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+  train_size = np.int(len(X)*split_ratio)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>3.3<a rel="noopener" class="anchor-link" href="#3.3">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 1) Apply ridge regression to the data with 10 predictors</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">6996</span><span class="p">)</span>
+<span class="c1"># error term</span>
+<span class="n">epsilon_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># X_matrix or regressors or predictiors</span>
+<span class="n">X_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="mi">500</span><span class="p">))</span>
+<span class="c1"># Slope</span>
+<span class="n">slope_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="c1"># Simulate Ys</span>
+<span class="n">Y_mat</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">X_mat</span> <span class="o">*</span> <span class="n">slope_vec</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">epsilon_vec</span>
+
+<span class="c1"># 2) Separate the sample into train and test.</span>
+<span class="n">N_feature</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">split_ratio</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">train_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_mat</span><span class="p">)</span><span class="o">*</span><span class="n">split_ratio</span><span class="p">)</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">X_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">train_size</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="n">N_feature</span><span class="p">]</span>
+<span class="n">Y_train</span> <span class="o">=</span> <span class="n">Y_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">train_size</span><span class="p">,</span><span class="n">N_feature</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">X_mat</span><span class="p">[</span><span class="n">train_size</span><span class="p">:,</span><span class="mi">0</span><span class="p">:</span><span class="n">N_feature</span><span class="p">]</span>
+<span class="n">Y_test</span> <span class="o">=</span> <span class="n">Y_mat</span><span class="p">[</span><span class="n">train_size</span><span class="p">:,</span><span class="n">N_feature</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="c1">## Ridge from sklearn</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">RidgeCV</span>
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">linear_model</span>
+<span class="n">ridge_cv</span> <span class="o">=</span> <span class="n">linear_model</span><span class="o">.</span><span class="n">RidgeCV</span><span class="p">(</span><span class="n">alphas</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">13</span><span class="p">))</span>
+<span class="n">RidgeCV</span><span class="p">(</span><span class="n">alphas</span><span class="o">=</span> <span class="p">([</span><span class="mf">1.e-6</span><span class="p">,</span> <span class="mf">1.e-5</span><span class="p">,</span> <span class="mf">1.e-4</span><span class="p">,</span> <span class="mf">1.e-3</span><span class="p">,</span> <span class="mf">1.e-2</span><span class="p">,</span> <span class="mf">1.e-1</span><span class="p">,</span> <span class="mf">1.e+0</span><span class="p">,</span> <span class="mf">1.e+1</span><span class="p">,</span> <span class="mf">1.e+2</span><span class="p">,</span> <span class="mf">1.e+3</span><span class="p">,</span> <span class="mf">1.e+4</span><span class="p">,</span> <span class="mf">1.e+5</span><span class="p">,</span> <span class="mf">1.e+6</span><span class="p">]))</span>
+<span class="n">ridge_cv</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span><span class="n">Y_train</span><span class="p">)</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">ridge_cv</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>  
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/tmp/ipykernel_110/4187401303.py:15: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
+Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+  train_size = np.int(len(X_mat)*split_ratio)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#3) Select the best parameter λ using cross validation on train set.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;best_alpha: &#39;</span><span class="p">,</span><span class="n">ridge_cv</span><span class="o">.</span><span class="n">alpha_</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>best_alpha:  1e-06
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 4) Calculate mean squared prediction error for the best selected λ</span>
+<span class="n">mse_in</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">Y_train</span> <span class="o">-</span> <span class="n">ridge_cv</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_train</span><span class="p">)))</span>
+<span class="n">mse_out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">Y_test</span> <span class="o">-</span> <span class="n">ridge_cv</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Regression Coefficients: </span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span><span class="n">ridge_cv</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;In-sample Mean Square Loss: &#39;</span><span class="p">,</span><span class="n">mse_in</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Out-of-Sample Mean Sqaure Loss: &#39;</span><span class="p">,</span> <span class="n">mse_out</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Regression Coefficients: 
+ [1.38531519 1.72559451 4.30341533 4.02834788 2.29340628 3.29862036
+ 3.31304126 4.52734418 1.54519635 4.81304012]
+In-sample Mean Square Loss:  1.0195788278885403
+Out-of-Sample Mean Sqaure Loss:  0.7798849652306962
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 5) Compare the mean squared prediction error of linear model</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">v490_mse</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mse_in</span><span class="p">)</span>
+<span class="n">mse_out</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>4418.307691625965
+1.0195788278885403
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.7798849652306962</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>3.4 Lasso Regression<a rel="noopener" class="anchor-link" href="#3.4-Lasso-Regression">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 1) Fit lasso regression to the first 10 predictors</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">6996</span><span class="p">)</span>
+<span class="c1"># error term</span>
+<span class="n">epsilon_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1"># X_matrix or regressors or predictiors</span>
+<span class="n">X_mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="mi">500</span><span class="p">,</span><span class="mi">500</span><span class="p">))</span>
+<span class="c1"># Slope</span>
+<span class="n">slope_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span>
+<span class="c1"># Simulate Ys</span>
+<span class="n">Y_mat</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">X_mat</span> <span class="o">*</span> <span class="n">slope_vec</span><span class="p">,</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">epsilon_vec</span>
+
+<span class="k">def</span> <span class="nf">fit_lasso</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">N_feature</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">out_put</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="n">X_sub</span><span class="o">=</span> <span class="n">X_mat</span><span class="p">[:,</span><span class="mi">0</span><span class="p">:</span><span class="n">N_feature</span><span class="p">]</span>
+    <span class="n">Y_sub</span> <span class="o">=</span> <span class="n">Y_mat</span><span class="p">[:,</span><span class="n">N_feature</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+    <span class="c1"># Create linear regression object</span>
+    <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LassoCV</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">LassoCV</span><span class="p">(</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_sub</span><span class="p">,</span> <span class="n">Y_sub</span><span class="p">)</span>
+    <span class="c1"># FIT LASSO</span>
+    <span class="n">Y_hat</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_sub</span><span class="p">)</span>
+    <span class="n">mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">Y_sub</span><span class="o">-</span><span class="n">Y_hat</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">out_put</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Coefficients for first </span><span class="si">%d</span><span class="s1"> predictors: </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span><span class="k">N_feature</span>,reg.coef_)
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean Square Error: &#39;</span><span class="p">,</span> <span class="n">mse</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Best alpha for Lasso&#39;</span><span class="p">,</span><span class="n">reg</span><span class="o">.</span><span class="n">alpha_</span><span class="p">)</span>    
+    <span class="k">return</span> <span class="n">reg</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">mse</span>
+
+<span class="n">m10_coef</span><span class="p">,</span> <span class="n">m10_mse</span><span class="o">=</span> <span class="n">fit_lasso</span><span class="p">(</span><span class="n">X_mat</span><span class="p">,</span><span class="n">Y_mat</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Coefficients for first 10 predictors: 
+ [1.36190093 1.70020402 4.30902743 4.02027906 2.29817445 3.27447241
+ 3.31395195 4.54542832 1.53888175 4.79932049]
+Mean Square Error:  0.9405956628119972
+Best alpha for Lasso 0.01996592807884697
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[60]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 2) Fit the model to the entire data</span>
+<span class="n">N_feature</span> <span class="o">=</span> <span class="mi">490</span>
+<span class="n">split_ratio</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">train_size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X_mat</span><span class="p">)</span><span class="o">*</span><span class="n">split_ratio</span><span class="p">)</span>
+<span class="n">X_train</span> <span class="o">=</span> <span class="n">X_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">train_size</span><span class="p">,</span><span class="mi">0</span><span class="p">:</span><span class="n">N_feature</span><span class="p">]</span>
+<span class="n">Y_train</span> <span class="o">=</span> <span class="n">Y_mat</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">train_size</span><span class="p">,</span><span class="n">N_feature</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">X_test</span> <span class="o">=</span> <span class="n">X_mat</span><span class="p">[</span><span class="n">train_size</span><span class="p">:,</span><span class="mi">0</span><span class="p">:</span><span class="n">N_feature</span><span class="p">]</span>
+<span class="n">Y_test</span> <span class="o">=</span> <span class="n">Y_mat</span><span class="p">[</span><span class="n">train_size</span><span class="p">:,</span><span class="n">N_feature</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">fit_lasso</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">N_feature</span><span class="o">=</span><span class="mi">490</span><span class="p">,</span> <span class="n">out_put</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+    <span class="c1"># Create linear regression object</span>
+    <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LassoCV</span>
+    <span class="n">reg</span> <span class="o">=</span> <span class="n">LassoCV</span><span class="p">(</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">)</span>
+    <span class="c1"># FIT LASSO</span>
+    <span class="n">Y_hat</span> <span class="o">=</span> <span class="n">reg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="n">mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">Y_test</span><span class="o">-</span><span class="n">Y_hat</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">out_put</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Coefficients for first </span><span class="si">%d</span><span class="s1"> predictors: </span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">%</span><span class="k">N_feature</span>,reg.coef_)
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Mean Square Error: &#39;</span><span class="p">,</span> <span class="n">mse</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Best alpha for Lasso&#39;</span><span class="p">,</span><span class="n">reg</span><span class="o">.</span><span class="n">alpha_</span><span class="p">)</span>    
+    <span class="k">return</span> <span class="n">reg</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">mse</span>
+
+<span class="n">v490_coef</span><span class="p">,</span> <span class="n">v490_mse</span><span class="o">=</span> <span class="n">fit_lasso</span><span class="p">(</span><span class="n">X_mat</span><span class="p">,</span> <span class="n">Y_mat</span><span class="p">,</span> <span class="n">N_feature</span><span class="o">=</span><span class="mi">490</span><span class="p">,</span> <span class="n">out_put</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/tmp/ipykernel_110/556023439.py:4: DeprecationWarning: `np.int` is a deprecated alias for the builtin `int`. To silence this warning, use `int` by itself. Doing this will not modify any behavior and is safe. When replacing `np.int`, you may wish to use e.g. `np.int64` or `np.int32` to specify the precision. If you wish to review your current use, check the release note link for additional information.
+Deprecated in NumPy 1.20; for more details and guidance: https://numpy.org/devdocs/release/1.20.0-notes.html#deprecations
+  train_size = np.int(len(X_mat)*split_ratio)
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Mean Square Error:  11194.999333390351
+Best alpha for Lasso 35.3399150874992
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>3.5<a rel="noopener" class="anchor-link" href="#3.5">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[61]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 1) Apply lasso regression analysis to data with 490 predictors</span>
+<span class="n">v490_coef</span><span class="p">,</span> <span class="n">v490_mse</span><span class="o">=</span> <span class="n">fit_lasso</span><span class="p">(</span><span class="n">X_mat</span><span class="p">,</span><span class="n">Y_mat</span><span class="p">,</span><span class="n">N_feature</span><span class="o">=</span><span class="mi">490</span><span class="p">,</span><span class="n">out_put</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="c1"># 2) Note that there are no actual slopes close to zero, but lasso regression still pushes them to zerowhen λ=0</span>
+<span class="c1"># 3) Calculate mean squares prediction error for the best lambda</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Mean Square Error:  11194.999333390351
+Best alpha for Lasso 35.3399150874992
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[62]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># 4) Fit lasso regression model to the entire data.</span>
+<span class="c1"># Plot the set of true slopes used in simulation and mark slopes removed by lasso.</span>
+<span class="n">mark_zeros</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">v490_coef</span> <span class="o">==</span> <span class="mf">0.0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">500</span><span class="p">),</span><span class="n">slope_vec</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mark_zeros</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">,</span><span class="n">slope_vec</span><span class="p">[</span><span class="n">mark_zeros</span><span class="p">],</span><span class="s1">&#39;b*&#39;</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;N-th coefficient&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Values&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Simulation coefficients and Lasso Regularization&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea">
+<img src="javascript://"/>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[&#160;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[&#160;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    </div>
+  </div>
+
+
+ 
+
+
+
+<script type="module" src="https://s.brightspace.com/lib/bsi/20.23.4-263/unbundled/mathjax.js"></script><script type="text/javascript">document.addEventListener('DOMContentLoaded', function() {
+					if (document.querySelector('math') || /\$\$|\\\(|\\\[|\\begin{|\\ref{|\\eqref{/.test(document.body.innerHTML)) {
+						document.querySelectorAll('mspace[linebreak="newline"]').forEach(elm => {
+							elm.setAttribute('style', 'display: block; height: 0.5rem;');
+						});
+
+						window.D2L.MathJax.loadMathJax({
+							'outputScale': 1.3,
+							'renderLatex': true
+						});
+					}
+				});</script><script type="module" src="https://s.brightspace.com/lib/bsi/20.23.4-263/unbundled/prism.js"></script><script type="text/javascript">document.addEventListener('DOMContentLoaded', function() {
+					document.querySelectorAll('.d2l-code').forEach(code => {
+						window.D2L.Prism.formatCodeElement(code);
+					});
+				});</script></body></html>

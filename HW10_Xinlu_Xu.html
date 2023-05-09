@@ -1,0 +1,1068 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head></head><body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+    
+    
+
+  <div class="border-box-sizing">
+    <div class="container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1>Asia Bayesian Network<a rel="noopener" class="anchor-link" href="#Asia-Bayesian-Network">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!pip install pomegranate</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="ch">#!pip list</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[64]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">pylab</span> inline
+<span class="kn">from</span> <span class="nn">pomegranate</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Populating the interactive namespace from numpy and matplotlib
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[65]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">asia</span> <span class="o">=</span> <span class="n">DiscreteDistribution</span><span class="p">(</span> <span class="p">{</span> <span class="s1">&#39;True&#39;</span> <span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span> <span class="p">:</span> <span class="mf">0.5</span> <span class="p">}</span> <span class="p">)</span>
+
+<span class="n">tuberculosis</span> <span class="o">=</span> <span class="n">ConditionalProbabilityTable</span><span class="p">(</span>
+    <span class="p">[[</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="mf">0.2</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="mf">0.8</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="mf">0.01</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="mf">0.99</span> <span class="p">]],</span> <span class="p">[</span><span class="n">asia</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[66]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">smoking</span> <span class="o">=</span> <span class="n">DiscreteDistribution</span><span class="p">(</span> <span class="p">{</span> <span class="s1">&#39;True&#39;</span> <span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span> <span class="p">:</span> <span class="mf">0.5</span> <span class="p">}</span> <span class="p">)</span>
+
+<span class="n">lung</span> <span class="o">=</span> <span class="n">ConditionalProbabilityTable</span><span class="p">(</span>
+    <span class="p">[[</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="mf">0.75</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="mf">0.25</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="mf">0.02</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="mf">0.98</span> <span class="p">]],</span> <span class="p">[</span><span class="n">smoking</span><span class="p">]</span> <span class="p">)</span>
+
+<span class="n">bronchitis</span> <span class="o">=</span> <span class="n">ConditionalProbabilityTable</span><span class="p">(</span>
+    <span class="p">[[</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="mf">0.92</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="mf">0.08</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="mf">0.03</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="mf">0.97</span> <span class="p">]],</span> <span class="p">[</span><span class="n">smoking</span><span class="p">]</span> <span class="p">)</span>
+
+<span class="n">tuberculosis_or_cancer</span> <span class="o">=</span> <span class="n">ConditionalProbabilityTable</span><span class="p">(</span>
+    <span class="p">[[</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="mf">1.0</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="mf">1.0</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="mf">1.0</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="mf">1.0</span> <span class="p">]],</span> <span class="p">[</span><span class="n">tuberculosis</span><span class="p">,</span> <span class="n">lung</span><span class="p">]</span> <span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[67]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">xray</span> <span class="o">=</span> <span class="n">ConditionalProbabilityTable</span><span class="p">(</span>
+    <span class="p">[[</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="mf">0.885</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="mf">0.115</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="mf">0.04</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="mf">0.96</span> <span class="p">]],</span> <span class="p">[</span><span class="n">tuberculosis_or_cancer</span><span class="p">]</span> <span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[68]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">dyspnea</span> <span class="o">=</span> <span class="n">ConditionalProbabilityTable</span><span class="p">(</span>
+    <span class="p">[[</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="mf">0.96</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="mf">0.04</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="mf">0.89</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="mf">0.11</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="mf">0.96</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="mf">0.04</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="mf">0.89</span> <span class="p">],</span>
+     <span class="p">[</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="mf">0.11</span> <span class="p">]],</span> <span class="p">[</span><span class="n">tuberculosis_or_cancer</span><span class="p">,</span> <span class="n">bronchitis</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[69]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">s0</span> <span class="o">=</span> <span class="n">State</span><span class="p">(</span> <span class="n">asia</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;asia&quot;</span> <span class="p">)</span>
+<span class="n">s1</span> <span class="o">=</span> <span class="n">State</span><span class="p">(</span> <span class="n">tuberculosis</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;tuberculosis&quot;</span> <span class="p">)</span>
+<span class="n">s2</span> <span class="o">=</span> <span class="n">State</span><span class="p">(</span> <span class="n">smoking</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;smoker&quot;</span> <span class="p">)</span>
+<span class="n">s3</span> <span class="o">=</span> <span class="n">State</span><span class="p">(</span> <span class="n">lung</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;cancer&quot;</span> <span class="p">)</span>
+<span class="n">s4</span> <span class="o">=</span> <span class="n">State</span><span class="p">(</span> <span class="n">bronchitis</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;bronchitis&quot;</span> <span class="p">)</span>
+<span class="n">s5</span> <span class="o">=</span> <span class="n">State</span><span class="p">(</span> <span class="n">tuberculosis_or_cancer</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;TvC&quot;</span> <span class="p">)</span>
+<span class="n">s6</span> <span class="o">=</span> <span class="n">State</span><span class="p">(</span> <span class="n">xray</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;xray&quot;</span> <span class="p">)</span>
+<span class="n">s7</span> <span class="o">=</span> <span class="n">State</span><span class="p">(</span> <span class="n">dyspnea</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;dyspnea&#39;</span> <span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[70]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">network</span> <span class="o">=</span> <span class="n">BayesianNetwork</span><span class="p">(</span> <span class="s2">&quot;asia&quot;</span> <span class="p">)</span>
+<span class="n">network</span><span class="o">.</span><span class="n">add_nodes</span><span class="p">(</span><span class="n">s0</span><span class="p">,</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">s3</span><span class="p">,</span> <span class="n">s4</span><span class="p">,</span> <span class="n">s5</span><span class="p">,</span> <span class="n">s6</span><span class="p">,</span> <span class="n">s7</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[71]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">network</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span> <span class="n">s0</span><span class="p">,</span> <span class="n">s1</span> <span class="p">)</span>
+<span class="n">network</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span> <span class="n">s1</span><span class="p">,</span> <span class="n">s5</span> <span class="p">)</span>
+<span class="n">network</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span> <span class="n">s2</span><span class="p">,</span> <span class="n">s3</span> <span class="p">)</span>
+<span class="n">network</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span> <span class="n">s2</span><span class="p">,</span> <span class="n">s4</span> <span class="p">)</span>
+<span class="n">network</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span> <span class="n">s3</span><span class="p">,</span> <span class="n">s5</span> <span class="p">)</span>
+<span class="n">network</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span> <span class="n">s5</span><span class="p">,</span> <span class="n">s6</span> <span class="p">)</span>
+<span class="n">network</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span> <span class="n">s5</span><span class="p">,</span> <span class="n">s7</span> <span class="p">)</span>
+<span class="n">network</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span> <span class="n">s4</span><span class="p">,</span> <span class="n">s7</span> <span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[72]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">network</span><span class="o">.</span><span class="n">bake</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[74]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#network.plot()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[55]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">observations</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;tuberculosis&#39;</span> <span class="p">:</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;smoker&#39;</span> <span class="p">:</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;bronchitis&#39;</span> <span class="p">:</span> <span class="s1">&#39;True&#39;</span> <span class="p">}</span>
+<span class="n">beliefs</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span> <span class="p">{</span> <span class="s1">&#39;tuberculosis&#39;</span> <span class="p">:</span> <span class="s1">&#39;True&#39;</span><span class="p">,</span> <span class="s1">&#39;smoker&#39;</span> <span class="p">:</span> <span class="s1">&#39;False&#39;</span><span class="p">,</span> <span class="s1">&#39;bronchitis&#39;</span> <span class="p">:</span> <span class="s1">&#39;True&#39;</span> <span class="p">}</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="se">\t\t</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">belief</span> <span class="p">)</span> <span class="k">for</span> <span class="n">state</span><span class="p">,</span> <span class="n">belief</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span> <span class="n">network</span><span class="o">.</span><span class="n">states</span><span class="p">,</span> <span class="n">beliefs</span> <span class="p">)</span> <span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>asia		{
+    &quot;class&quot; : &quot;Distribution&quot;,
+    &quot;dtype&quot; : &quot;str&quot;,
+    &quot;name&quot; : &quot;DiscreteDistribution&quot;,
+    &quot;parameters&quot; : [
+        {
+            &quot;True&quot; : 0.9523809523809521,
+            &quot;False&quot; : 0.047619047619047825
+        }
+    ],
+    &quot;frozen&quot; : false
+}
+tuberculosis		True
+smoker		False
+cancer		{
+    &quot;class&quot; : &quot;Distribution&quot;,
+    &quot;dtype&quot; : &quot;str&quot;,
+    &quot;name&quot; : &quot;DiscreteDistribution&quot;,
+    &quot;parameters&quot; : [
+        {
+            &quot;False&quot; : 0.9799999999999995,
+            &quot;True&quot; : 0.020000000000000438
+        }
+    ],
+    &quot;frozen&quot; : false
+}
+bronchitis		True
+TvC		{
+    &quot;class&quot; : &quot;Distribution&quot;,
+    &quot;dtype&quot; : &quot;str&quot;,
+    &quot;name&quot; : &quot;DiscreteDistribution&quot;,
+    &quot;parameters&quot; : [
+        {
+            &quot;False&quot; : 0.0,
+            &quot;True&quot; : 1.0
+        }
+    ],
+    &quot;frozen&quot; : false
+}
+xray		{
+    &quot;class&quot; : &quot;Distribution&quot;,
+    &quot;dtype&quot; : &quot;str&quot;,
+    &quot;name&quot; : &quot;DiscreteDistribution&quot;,
+    &quot;parameters&quot; : [
+        {
+            &quot;False&quot; : 0.11500000000000016,
+            &quot;True&quot; : 0.8849999999999999
+        }
+    ],
+    &quot;frozen&quot; : false
+}
+dyspnea		{
+    &quot;class&quot; : &quot;Distribution&quot;,
+    &quot;dtype&quot; : &quot;str&quot;,
+    &quot;name&quot; : &quot;DiscreteDistribution&quot;,
+    &quot;parameters&quot; : [
+        {
+            &quot;False&quot; : 0.04000000000000022,
+            &quot;True&quot; : 0.9599999999999997
+        }
+    ],
+    &quot;frozen&quot; : false
+}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Monty Hall<a rel="noopener" class="anchor-link" href="#Monty-Hall">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[56]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">pomegranate</span> <span class="kn">import</span> <span class="o">*</span>
+ 
+<span class="n">guest</span> <span class="o">=</span><span class="n">DiscreteDistribution</span><span class="p">(</span> <span class="p">{</span> <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">3</span> <span class="p">}</span> <span class="p">)</span>
+ 
+<span class="n">prize</span> <span class="o">=</span><span class="n">DiscreteDistribution</span><span class="p">(</span> <span class="p">{</span> <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mf">1.</span><span class="o">/</span><span class="mi">3</span> <span class="p">}</span> <span class="p">)</span>
+ 
+<span class="n">monty</span> <span class="o">=</span><span class="n">ConditionalProbabilityTable</span><span class="p">(</span>
+<span class="p">[[</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mf">0.5</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mf">0.5</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mf">1.0</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mf">1.0</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mf">1.0</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="mf">0.5</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mf">0.5</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="mf">1.0</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mf">1.0</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="mf">1.0</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="mf">0.5</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="mf">0.5</span> <span class="p">],</span>
+<span class="p">[</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="mf">0.0</span> <span class="p">]],</span> <span class="p">[</span><span class="n">guest</span><span class="p">,</span> <span class="n">prize</span><span class="p">]</span> <span class="p">)</span>
+ 
+<span class="n">d1</span> <span class="o">=</span> <span class="n">State</span><span class="p">(</span> <span class="n">guest</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;guest&quot;</span> <span class="p">)</span>
+<span class="n">d2</span> <span class="o">=</span> <span class="n">State</span><span class="p">(</span> <span class="n">prize</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;prize&quot;</span> <span class="p">)</span>
+<span class="n">d3</span> <span class="o">=</span> <span class="n">State</span><span class="p">(</span> <span class="n">monty</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;monty&quot;</span> <span class="p">)</span>
+ 
+<span class="n">network</span> <span class="o">=</span> <span class="n">BayesianNetwork</span><span class="p">(</span> <span class="s2">&quot;Solving the Monty Hall Problem With Bayesian Networks&quot;</span> <span class="p">)</span>
+<span class="n">network</span><span class="o">.</span><span class="n">add_states</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="n">d3</span><span class="p">)</span>
+<span class="n">network</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">d1</span><span class="p">,</span> <span class="n">d3</span><span class="p">)</span>
+<span class="n">network</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">d2</span><span class="p">,</span> <span class="n">d3</span><span class="p">)</span>
+<span class="n">network</span><span class="o">.</span><span class="n">bake</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[57]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">beliefs</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">({</span> <span class="s1">&#39;guest&#39;</span> <span class="p">:</span> <span class="s1">&#39;A&#39;</span> <span class="p">})</span>
+<span class="n">beliefs</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">beliefs</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;n&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">t</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">belief</span> <span class="p">)</span> <span class="k">for</span> <span class="n">state</span><span class="p">,</span> <span class="n">belief</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span> <span class="n">network</span><span class="o">.</span><span class="n">states</span><span class="p">,</span> <span class="n">beliefs</span> <span class="p">)</span> <span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>guesttAnprizet{
+    &quot;class&quot; : &quot;Distribution&quot;,
+    &quot;dtype&quot; : &quot;str&quot;,
+    &quot;name&quot; : &quot;DiscreteDistribution&quot;,
+    &quot;parameters&quot; : [
+        {
+            &quot;A&quot; : 0.3333333333333333,
+            &quot;B&quot; : 0.3333333333333333,
+            &quot;C&quot; : 0.3333333333333333
+        }
+    ],
+    &quot;frozen&quot; : false
+}nmontyt{
+    &quot;class&quot; : &quot;Distribution&quot;,
+    &quot;dtype&quot; : &quot;str&quot;,
+    &quot;name&quot; : &quot;DiscreteDistribution&quot;,
+    &quot;parameters&quot; : [
+        {
+            &quot;B&quot; : 0.49999999999999983,
+            &quot;A&quot; : 0.0,
+            &quot;C&quot; : 0.49999999999999983
+        }
+    ],
+    &quot;frozen&quot; : false
+}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[58]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">beliefs</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">({</span><span class="s1">&#39;guest&#39;</span> <span class="p">:</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;monty&#39;</span> <span class="p">:</span> <span class="s1">&#39;B&#39;</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;n&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">t</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">belief</span><span class="p">)</span> <span class="p">)</span> <span class="k">for</span> <span class="n">state</span><span class="p">,</span> <span class="n">belief</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span> <span class="n">network</span><span class="o">.</span><span class="n">states</span><span class="p">,</span> <span class="n">beliefs</span> <span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>guesttAnprizet{
+    &quot;class&quot; : &quot;Distribution&quot;,
+    &quot;dtype&quot; : &quot;str&quot;,
+    &quot;name&quot; : &quot;DiscreteDistribution&quot;,
+    &quot;parameters&quot; : [
+        {
+            &quot;A&quot; : 0.3333333333333334,
+            &quot;B&quot; : 0.0,
+            &quot;C&quot; : 0.6666666666666664
+        }
+    ],
+    &quot;frozen&quot; : false
+}nmontytB
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[59]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">observations</span> <span class="o">=</span> <span class="p">{</span> <span class="s1">&#39;monty&#39;</span> <span class="p">:</span> <span class="s1">&#39;B&#39;</span> <span class="p">}</span>
+<span class="n">beliefs</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span> <span class="nb">str</span><span class="p">,</span> <span class="n">network</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span> <span class="n">observations</span> <span class="p">)</span> <span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span> <span class="s2">&quot;</span><span class="si">{}</span><span class="se">\t</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">belief</span> <span class="p">)</span> <span class="k">for</span> <span class="n">state</span><span class="p">,</span> <span class="n">belief</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span> <span class="n">network</span><span class="o">.</span><span class="n">states</span><span class="p">,</span> <span class="n">beliefs</span> <span class="p">)</span> <span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>guest	{
+    &quot;class&quot; : &quot;Distribution&quot;,
+    &quot;dtype&quot; : &quot;str&quot;,
+    &quot;name&quot; : &quot;DiscreteDistribution&quot;,
+    &quot;parameters&quot; : [
+        {
+            &quot;A&quot; : 0.49999999999999983,
+            &quot;B&quot; : 0.0,
+            &quot;C&quot; : 0.49999999999999983
+        }
+    ],
+    &quot;frozen&quot; : false
+}
+prize	{
+    &quot;class&quot; : &quot;Distribution&quot;,
+    &quot;dtype&quot; : &quot;str&quot;,
+    &quot;name&quot; : &quot;DiscreteDistribution&quot;,
+    &quot;parameters&quot; : [
+        {
+            &quot;A&quot; : 0.49999999999999983,
+            &quot;B&quot; : 0.0,
+            &quot;C&quot; : 0.49999999999999983
+        }
+    ],
+    &quot;frozen&quot; : false
+}
+monty	B
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[60]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">[[</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span> <span class="p">],</span>
+		<span class="p">[</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span> <span class="p">],</span>
+		<span class="p">[</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span> <span class="p">],</span>
+		<span class="p">[</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span> <span class="p">],</span>
+		<span class="p">[</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span> <span class="p">],</span>
+		<span class="p">[</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span> <span class="p">],</span>
+		<span class="p">[</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span> <span class="p">],</span>
+		<span class="p">[</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span> <span class="p">],</span>
+		<span class="p">[</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span> <span class="p">],</span>
+		<span class="p">[</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span> <span class="p">],</span>
+		<span class="p">[</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span> <span class="p">],</span>
+		<span class="p">[</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span> <span class="p">]]</span>
+
+<span class="n">network</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span> <span class="n">data</span> <span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[60]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{
+    &quot;class&quot; : &quot;BayesianNetwork&quot;,
+    &quot;name&quot; : &quot;Solving the Monty Hall Problem With Bayesian Networks&quot;,
+    &quot;structure&quot; : [
+        [],
+        [],
+        [
+            0,
+            1
+        ]
+    ],
+    &quot;states&quot; : [
+        {
+            &quot;class&quot; : &quot;State&quot;,
+            &quot;distribution&quot; : {
+                &quot;class&quot; : &quot;Distribution&quot;,
+                &quot;dtype&quot; : &quot;str&quot;,
+                &quot;name&quot; : &quot;DiscreteDistribution&quot;,
+                &quot;parameters&quot; : [
+                    {
+                        &quot;A&quot; : 0.4166666666666667,
+                        &quot;B&quot; : 0.16666666666666666,
+                        &quot;C&quot; : 0.4166666666666667
+                    }
+                ],
+                &quot;frozen&quot; : false
+            },
+            &quot;name&quot; : &quot;guest&quot;,
+            &quot;weight&quot; : 1.0
+        },
+        {
+            &quot;class&quot; : &quot;State&quot;,
+            &quot;distribution&quot; : {
+                &quot;class&quot; : &quot;Distribution&quot;,
+                &quot;dtype&quot; : &quot;str&quot;,
+                &quot;name&quot; : &quot;DiscreteDistribution&quot;,
+                &quot;parameters&quot; : [
+                    {
+                        &quot;A&quot; : 0.4166666666666667,
+                        &quot;B&quot; : 0.25,
+                        &quot;C&quot; : 0.3333333333333333
+                    }
+                ],
+                &quot;frozen&quot; : false
+            },
+            &quot;name&quot; : &quot;prize&quot;,
+            &quot;weight&quot; : 1.0
+        },
+        {
+            &quot;class&quot; : &quot;State&quot;,
+            &quot;distribution&quot; : {
+                &quot;class&quot; : &quot;Distribution&quot;,
+                &quot;name&quot; : &quot;ConditionalProbabilityTable&quot;,
+                &quot;table&quot; : [
+                    [
+                        &quot;A&quot;,
+                        &quot;A&quot;,
+                        &quot;A&quot;,
+                        &quot;0.2&quot;
+                    ],
+                    [
+                        &quot;A&quot;,
+                        &quot;A&quot;,
+                        &quot;B&quot;,
+                        &quot;0.2&quot;
+                    ],
+                    [
+                        &quot;A&quot;,
+                        &quot;A&quot;,
+                        &quot;C&quot;,
+                        &quot;0.6&quot;
+                    ],
+                    [
+                        &quot;A&quot;,
+                        &quot;B&quot;,
+                        &quot;A&quot;,
+                        &quot;0.3333333333333333&quot;
+                    ],
+                    [
+                        &quot;A&quot;,
+                        &quot;B&quot;,
+                        &quot;B&quot;,
+                        &quot;0.3333333333333333&quot;
+                    ],
+                    [
+                        &quot;A&quot;,
+                        &quot;B&quot;,
+                        &quot;C&quot;,
+                        &quot;0.3333333333333333&quot;
+                    ],
+                    [
+                        &quot;A&quot;,
+                        &quot;C&quot;,
+                        &quot;A&quot;,
+                        &quot;0.3333333333333333&quot;
+                    ],
+                    [
+                        &quot;A&quot;,
+                        &quot;C&quot;,
+                        &quot;B&quot;,
+                        &quot;0.3333333333333333&quot;
+                    ],
+                    [
+                        &quot;A&quot;,
+                        &quot;C&quot;,
+                        &quot;C&quot;,
+                        &quot;0.3333333333333333&quot;
+                    ],
+                    [
+                        &quot;B&quot;,
+                        &quot;A&quot;,
+                        &quot;A&quot;,
+                        &quot;0.3333333333333333&quot;
+                    ],
+                    [
+                        &quot;B&quot;,
+                        &quot;A&quot;,
+                        &quot;B&quot;,
+                        &quot;0.3333333333333333&quot;
+                    ],
+                    [
+                        &quot;B&quot;,
+                        &quot;A&quot;,
+                        &quot;C&quot;,
+                        &quot;0.3333333333333333&quot;
+                    ],
+                    [
+                        &quot;B&quot;,
+                        &quot;B&quot;,
+                        &quot;A&quot;,
+                        &quot;0.0&quot;
+                    ],
+                    [
+                        &quot;B&quot;,
+                        &quot;B&quot;,
+                        &quot;B&quot;,
+                        &quot;0.5&quot;
+                    ],
+                    [
+                        &quot;B&quot;,
+                        &quot;B&quot;,
+                        &quot;C&quot;,
+                        &quot;0.5&quot;
+                    ],
+                    [
+                        &quot;B&quot;,
+                        &quot;C&quot;,
+                        &quot;A&quot;,
+                        &quot;0.3333333333333333&quot;
+                    ],
+                    [
+                        &quot;B&quot;,
+                        &quot;C&quot;,
+                        &quot;B&quot;,
+                        &quot;0.3333333333333333&quot;
+                    ],
+                    [
+                        &quot;B&quot;,
+                        &quot;C&quot;,
+                        &quot;C&quot;,
+                        &quot;0.3333333333333333&quot;
+                    ],
+                    [
+                        &quot;C&quot;,
+                        &quot;A&quot;,
+                        &quot;A&quot;,
+                        &quot;0.3333333333333333&quot;
+                    ],
+                    [
+                        &quot;C&quot;,
+                        &quot;A&quot;,
+                        &quot;B&quot;,
+                        &quot;0.3333333333333333&quot;
+                    ],
+                    [
+                        &quot;C&quot;,
+                        &quot;A&quot;,
+                        &quot;C&quot;,
+                        &quot;0.3333333333333333&quot;
+                    ],
+                    [
+                        &quot;C&quot;,
+                        &quot;B&quot;,
+                        &quot;A&quot;,
+                        &quot;1.0&quot;
+                    ],
+                    [
+                        &quot;C&quot;,
+                        &quot;B&quot;,
+                        &quot;B&quot;,
+                        &quot;0.0&quot;
+                    ],
+                    [
+                        &quot;C&quot;,
+                        &quot;B&quot;,
+                        &quot;C&quot;,
+                        &quot;0.0&quot;
+                    ],
+                    [
+                        &quot;C&quot;,
+                        &quot;C&quot;,
+                        &quot;A&quot;,
+                        &quot;0.25&quot;
+                    ],
+                    [
+                        &quot;C&quot;,
+                        &quot;C&quot;,
+                        &quot;B&quot;,
+                        &quot;0.0&quot;
+                    ],
+                    [
+                        &quot;C&quot;,
+                        &quot;C&quot;,
+                        &quot;C&quot;,
+                        &quot;0.75&quot;
+                    ]
+                ],
+                &quot;dtypes&quot; : [
+                    &quot;str&quot;,
+                    &quot;str&quot;,
+                    &quot;str&quot;,
+                    &quot;float&quot;
+                ],
+                &quot;parents&quot; : [
+                    {
+                        &quot;class&quot; : &quot;Distribution&quot;,
+                        &quot;dtype&quot; : &quot;str&quot;,
+                        &quot;name&quot; : &quot;DiscreteDistribution&quot;,
+                        &quot;parameters&quot; : [
+                            {
+                                &quot;A&quot; : 0.4166666666666667,
+                                &quot;B&quot; : 0.16666666666666666,
+                                &quot;C&quot; : 0.4166666666666667
+                            }
+                        ],
+                        &quot;frozen&quot; : false
+                    },
+                    {
+                        &quot;class&quot; : &quot;Distribution&quot;,
+                        &quot;dtype&quot; : &quot;str&quot;,
+                        &quot;name&quot; : &quot;DiscreteDistribution&quot;,
+                        &quot;parameters&quot; : [
+                            {
+                                &quot;A&quot; : 0.4166666666666667,
+                                &quot;B&quot; : 0.25,
+                                &quot;C&quot; : 0.3333333333333333
+                            }
+                        ],
+                        &quot;frozen&quot; : false
+                    }
+                ]
+            },
+            &quot;name&quot; : &quot;monty&quot;,
+            &quot;weight&quot; : 1.0
+        }
+    ]
+}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[61]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">monty</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>A	A	B	0.2
+A	A	A	0.2
+A	A	C	0.6
+A	B	B	0.3333333333333333
+A	B	A	0.3333333333333333
+A	B	C	0.3333333333333333
+A	C	B	0.3333333333333333
+A	C	A	0.3333333333333333
+A	C	C	0.3333333333333333
+B	A	B	0.3333333333333333
+B	A	A	0.3333333333333333
+B	A	C	0.3333333333333333
+B	B	B	0.5
+B	B	A	0.0
+B	B	C	0.5
+B	C	B	0.3333333333333333
+B	C	A	0.3333333333333333
+B	C	C	0.3333333333333333
+C	A	B	0.3333333333333333
+C	A	A	0.3333333333333333
+C	A	C	0.3333333333333333
+C	B	B	0.0
+C	B	A	1.0
+C	B	C	0.0
+C	C	B	0.0
+C	C	A	0.25
+C	C	C	0.75
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[62]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">prize</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>{
+    &quot;class&quot; : &quot;Distribution&quot;,
+    &quot;dtype&quot; : &quot;str&quot;,
+    &quot;name&quot; : &quot;DiscreteDistribution&quot;,
+    &quot;parameters&quot; : [
+        {
+            &quot;A&quot; : 0.4166666666666667,
+            &quot;B&quot; : 0.25,
+            &quot;C&quot; : 0.3333333333333333
+        }
+    ],
+    &quot;frozen&quot; : false
+}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[63]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">guest</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>{
+    &quot;class&quot; : &quot;Distribution&quot;,
+    &quot;dtype&quot; : &quot;str&quot;,
+    &quot;name&quot; : &quot;DiscreteDistribution&quot;,
+    &quot;parameters&quot; : [
+        {
+            &quot;A&quot; : 0.4166666666666667,
+            &quot;B&quot; : 0.16666666666666666,
+            &quot;C&quot; : 0.4166666666666667
+        }
+    ],
+    &quot;frozen&quot; : false
+}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&#160;[63]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    </div>
+  </div>
+
+
+ 
+
+
+
+<script type="module" src="https://s.brightspace.com/lib/bsi/20.23.4-263/unbundled/mathjax.js"></script><script type="text/javascript">document.addEventListener('DOMContentLoaded', function() {
+					if (document.querySelector('math') || /\$\$|\\\(|\\\[|\\begin{|\\ref{|\\eqref{/.test(document.body.innerHTML)) {
+						document.querySelectorAll('mspace[linebreak="newline"]').forEach(elm => {
+							elm.setAttribute('style', 'display: block; height: 0.5rem;');
+						});
+
+						window.D2L.MathJax.loadMathJax({
+							'outputScale': 1.3,
+							'renderLatex': true
+						});
+					}
+				});</script><script type="module" src="https://s.brightspace.com/lib/bsi/20.23.4-263/unbundled/prism.js"></script><script type="text/javascript">document.addEventListener('DOMContentLoaded', function() {
+					document.querySelectorAll('.d2l-code').forEach(code => {
+						window.D2L.Prism.formatCodeElement(code);
+					});
+				});</script></body></html>
